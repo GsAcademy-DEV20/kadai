@@ -1,0 +1,92 @@
+ /* ここから下に記載していく */
+ /* ----------------------------------------
+    汎用
+ ----------------------------------------*/
+ 
+ @charset "UTF-8";
+ body {
+     background-color: #faf3f3;
+     min-width: 500px;
+     font-family: 'Hachi Maru Pop', cursive;
+     color: rgb(75, 75, 75);
+ }
+ 
+ h1 {
+     text-align: center;
+     background: #da7f8f;
+     width: 100%;
+     font-size: 28px;
+     color: #FFF;
+     font-weight: bold;
+     margin: 0 0 30px;
+     padding: 10px;
+ }
+ /* ----------------------------------------
+    Call
+ ----------------------------------------*/
+ 
+ #call {
+     margin: 20px 0 0;
+     text-align: center;
+     font-size: 28px;
+ }
+ /* ----------------------------------------
+    NPC
+ ----------------------------------------*/
+ 
+ .npc_wrapper {
+     position: relative;
+     width: 500px;
+     margin: 0 auto;
+     text-align: center;
+ }
+ 
+ #npc_hand {
+     position: absolute;
+     top: 20%;
+     left: 0%;
+ }
+ /* ----------------------------------------
+    PC
+ ----------------------------------------*/
+ 
+ .pc_wrapper {
+     display: flex;
+     justify-content: center;
+ }
+ 
+ .pc_wrapper li {
+     display: flex;
+     justify-content: center;
+ }
+ 
+ .pc_wrapper li img {
+     max-width: 70%;
+     height: auto;
+     background: #da7f8f;
+     border-radius: 50%;
+ }
+ /* ----------------------------------------
+    リセットボタン
+ ----------------------------------------*/
+ 
+ .btn_wrapper {
+     text-align: center;
+     margin: 20px 0;
+ }
+ 
+ .btn-square {
+     display: inline-block;
+     padding: 1em 2em;
+     text-decoration: none;
+     background: #ffd8df;
+     /*ボタン色*/
+     color: rgb(75, 75, 75);
+     font-weight: bold;
+     font-size: 18px;
+     border-bottom: solid 4px #da7f8f;
+     border-radius: 3px;
+     text-align: center;
+     position: relative;
+     z-index: 10;
+ }
