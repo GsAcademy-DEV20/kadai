@@ -43,7 +43,7 @@
     ----------------------------------------*/
     main {
         position: relative;
-        height: 699px;
+        height: 580px;
         margin-top: 30px;
         background: url(../img/studyroom_48.png) top left no-repeat;
         width: 960px;
@@ -79,18 +79,34 @@
         height: 48px;
         width: 150px;
         text-align: center;
+        font-family: 'DotGothic16', sans-serif;
     }
     .btn-set {
         text-align: center;
         margin: 30px 0 0;
     }
-    .button-save {
-        margin: 0;
-        position: absolute;
-        top: 72.5%;
-        left: 50%;
-        margin-right: -50%;
-        transform: translate(-50%, -50%)
+    /* ----------------------------------------
+        記録
+    ----------------------------------------*/
+    table {
+        margin: 10px auto;
+        border: 1px solid #1B435D;
+        width: 920px;
+    }
+    th {
+        width: 30%;
+        font-size: 24px;
+        color: #fff;
+        background-color: #78BBE6;
+        border-bottom: 1px solid #1B435D;
+        vertical-align: middle;
+    }
+    td {
+        font-size: 24px;
+        background-color: #fff;
+        border-bottom: 1px solid #1B435D;
+        padding: 10px;
+        vertical-align: middle;
     }
     /* ----------------------------------------
         フッター
