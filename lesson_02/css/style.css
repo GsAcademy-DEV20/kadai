@@ -13,6 +13,10 @@
         font-family: 'DotGothic16', sans-serif;
         background: #fff;
     }
+    input::placeholder,
+    textarea::placeholder {
+        color: #89abd4;
+    }
     /* ----------------------------------------
         ヘッダー
     ----------------------------------------*/
@@ -51,7 +55,7 @@
     }
     main #chara {
         position: absolute;
-        left: 329px;
+        left: 345px;
         top: 2px;
         width: 270px;
         pointer-events: none;
@@ -70,16 +74,19 @@
         position: relative;
         padding: 200px 0 0;
     }
-    .btn-day {
+    .btn-day,
+    .btn-text {
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-bottom: 10px;
     }
     input {
         height: 48px;
-        width: 150px;
+        width: 300px;
         text-align: center;
         font-family: 'DotGothic16', sans-serif;
+        font-size: 32px;
     }
     .btn-set {
         text-align: center;

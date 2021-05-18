@@ -31,7 +31,7 @@ $("#button-save").on("click", function() {
 });
 
 // 消去ボタン
-$("#button-erase").on("click", function() {
+$("#list").on("click", "#button-erase", function() {
     console.log("erase");
 });
 
@@ -55,18 +55,25 @@ function init() {
 for (let i = 0; i < localStorage.length; i++) {
     //keyの0番目は[test]というデータの塊のことなのでそのkeyをもとにlocalStorage.getItem()
     //を使って取得している
-    const key = localStorage.key(i);
-    const value = localStorage.getItem(key);
+    let data = [];
+    if (localStorage.getItem("datalist")) {
+        data = JSON.parse(localStorage.getItem("datalist"));
+    }
 
+    //テンプレートリテラル
     const html = `
-    <tr>
-        <th>${key}</th>
-        <td align=left>${value}</td>
-        <td align=right><button type="button" id="button-erase">削除</button>
-        <button type="button">変更</button></td>
-     </tr>
-    `
+     <tr>
+         <th>${data.date}</th>
+         <td align=left>${data.timer}</td>
+         <td >${data.text}</td>
+         <td align=right><button type="button" id="button-erase">削除</button>
+         <button type="button">変更</button></td>
+      </tr>
+     `
+
+    //const htmlをappendで埋め込み
     $("#list").append(html);
+
 
 }
 
@@ -87,26 +94,36 @@ function timerStop() {
     countable = true;
 };
 
+
 //セーブ
 function timerSave() {
-    const key = $("#date").val();
-    const value = $("#timer").html();
+    const date = $("#date").val();
+    const text = $("#text").val();
+    const timer = $("#timer").html();
 
     if (countable) {
-        if (key && value) {
+        if (date && timer) {
 
-            localStorage.setItem(key, value);
+            //json形式で保存
+            var datalist = {
+                date: date,
+                text: text,
+                timer: timer
+            }
+
+            localStorage.setItem("datalist", JSON.stringify(datalist));
             //テンプレートリテラル
             const html = `
             <tr>
-                <th>${key}</th>
-                <td align=left>${value}</td>
+                <th>${date}</th>
+                <td align=left>${timer}</td>
+                <td >${text}</td>
                 <td align=right><button type="button" id="button-erase">削除</button>
                 <button type="button">変更</button></td>
              </tr>
             `
 
-            //const html という変数をjqueryのおまじないを使って埋める
+            //const htmlをappendで埋め込み
             $("#list").append(html);
 
             //初期化
@@ -120,6 +137,7 @@ function timerSave() {
     }
 
 };
+
 
 
 //-------------------------

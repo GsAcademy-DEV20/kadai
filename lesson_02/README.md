@@ -20,6 +20,16 @@ hogehoge
 いろいろ調べたところ  
 ```const value = $("#timer").html();  ```  
 という形でデータを取得、保存できた
+- 動的に生成したボタンの処理についてハマった。  
+動的に作成したボタンは親の要素に.on()で引数として呼び出し元を渡してやるとよいとのこと  
+https://www.flatflag.nir87.com/click-1663  
+```
+// 消去ボタン
+$("#list").on("click", "#button-erase", function() {
+    console.log("erase");
+});
+```
+
 
 ## そのほかメモ
 VsCodeでMarkdownをサイドバイサイドにプレビューするには？
