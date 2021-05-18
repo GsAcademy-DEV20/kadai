@@ -5,11 +5,51 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <title>べんきょうクエスト</title>
 </head>
 
 <body>
+    <div class="site-header"> さぎょクエ</div>
 
+    <header class="header">
+        <p id="timer">00:00:00</p>
+    </header>
+
+    <main class="studyroom">
+        <div id="studyroom">
+            <figure id="chara"><img src="img/chara.png" alt=""></figure>
+            <div class="btn-area">
+                <div class="btn-day">
+                    <input type="date" id="date"></input>
+                </div>
+                <div class="btn-set">
+                    <a id="button-start">
+                        <img src="img/button-start.png" alt="START">
+                    </a>
+                    <a id="button-stop">
+                        <img src="img/button-stop.png" alt="SAVE">
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        <a class="button-save">
+            <img src="img/button-save.png" alt="SAVE">
+        </a>
+    </main>
+
+
+    <footer class="footer">
+        <div class="footer-link"><a href="#" target="_blank">利用規約</a></div>
+        <div class="copyright"> <small>copyrights XXX All RIghts Reserved.</small></div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
