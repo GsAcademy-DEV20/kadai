@@ -5,37 +5,39 @@ let timer;
 
 let countable;
 
-
 //-------------------------
 //  メイン
 //-------------------------
 
-$(document).ready(function() {
-    init();
-    //日付は今日の日付
-    setToday();
+$(document).ready(function () {
+  init();
+  setToday();
+  load();
 });
 
 // スタートボタン
-$("#button-start").on("click", function() {
-    if (countable) {
-        timerStart();
-    }
+$("#button-start").on("click", function () {
+  if (countable) {
+    timerStart();
+  }
 });
 // 停止ボタン
-$("#button-stop").on("click", function() {
-    if (!countable) {
-        timerStop();
-    }
+$("#button-stop").on("click", function () {
+  if (!countable) {
+    timerStop();
+  }
 });
 // セーブボタン
-$("#button-save").on("click", function() {
-    timerSave();
+$("#button-save").on("click", function () {
+  timerSave();
 });
 
 // 消去ボタン
-$("#list").on("click", "#button-erase", function() {
-    console.log("erase");
+$("#list").on("click", "#button-erase", function () {
+  //呼び出し元のボタンのtitleにkeyを入れてるので拾う
+  let key = this.title;
+  localStorage.removeItem(key);
+  load();
 });
 
 //-------------------------
@@ -43,112 +45,117 @@ $("#list").on("click", "#button-erase", function() {
 //-------------------------
 //初期化処理
 function init() {
-    // 00:00:00から開始
-    sec = 0;
-    min = 0;
-    hour = 0;
-    countable = true;
-    $('#timer').html('00:00:00');
+  // 00:00:00から開始
+  sec = 0;
+  min = 0;
+  hour = 0;
+  countable = true;
+  $("#timer").html("00:00:00");
 }
 
 //タイマー開始
 function timerStart() {
-    console.log("start");
-    init();
-    timer = setInterval(countup, 1000);
-    countable = false;
-};
+  console.log("start");
+  init();
+  timer = setInterval(countup, 1000);
+  countable = false;
+}
 
 //タイマー停止
 function timerStop() {
-    console.log("stop");
-    // 一時停止
-    clearInterval(timer);
-    countable = true;
-};
+  console.log("stop");
+  // 一時停止
+  clearInterval(timer);
+  countable = true;
+}
 
 //セーブ
 function timerSave() {
-    const key = $("#date").val();
-    const timer = $("#timer").html();
-    const text = $("#text").val();
+  const date = $("#date").val();
+  const timer = $("#timer").html();
+  const text = $("#text").val();
+  const key = date + timer + text; //同じ日でも保存できるようにkeyは生成
 
+  if (countable) {
+    if (key && timer) {
+      //オブジェクトの配列としてJSONデータを用意
+      //keyの中にいれたいデータの中身
+      var valueObj = {
+        date: date,
+        timer: timer,
+        text: text,
+      };
 
-    if (countable) {
-        if (key && timer) {
+      //オブジェクトデータをJSON（文字列データ）に変換する
+      var json = JSON.stringify(valueObj);
+      //JSONデータをローカルストレージに保存する（key（箱）ごとにjson（箱の中身）を保存）
+      const json_text = localStorage.setItem(key, json);
 
-            //オブジェクトの配列としてJSONデータを用意
-            var valueObj = {
-                //ここはkeyの中にいれたいデータなのでkey自体はここにかかない
-                timer: timer,
-                text: text,
-            };
-            console.log(valueObj);
-
-            //オブジェクトデータをJSON（文字列データ）に変換する
-            var json = JSON.stringify(valueObj);
-            //JSONデータをローカルストレージに保存する（key（箱）ごとにjson（箱の中身）を保存）
-            const json_text = localStorage.setItem(key, json);
-
-            //テンプレートリテラル
-            const html = `
+      //テンプレートリテラル
+      const html = `
             <tr>
-                <th>${key}</th>
+                <th>${date}</th>
                 <td align=left>${timer}</td>
                 <td >${text}</td>
-                <td align=right><button type="button" id="button-erase" valur=i>削除</button>
+                <td align=right><button type="button" id="button-erase" title=${key}>削除</button>
                 <button type="button" valur=i>変更</button></td>
             </tr>
-            `
+            `;
 
-            //const htmlをappendで埋め込み
-            $("#list").append(html);
+      //const htmlをappendで埋め込み
+      $("#list").append(html);
 
-            //初期化
-            init();
-
-        } else {
-            alert("日付を入力してね");
-        }
+      //初期化
+      init();
     } else {
-        alert("時間をとめてね");
+      alert("日付を入力してね");
     }
+  } else {
+    alert("時間をとめてね");
+  }
+}
 
-};
+function load() {
+  //htmlのリストは一度空にする
+  $("#list").empty();
 
-//ロード
- for (let i = 0; i < localStorage.length; i++) {
+  //htmlのロードしてリストに埋める
+  for (let i = 0; i < localStorage.length; i++) {
+    //localstorageのkeyを取得
     const key = localStorage.key(i);
-
-    //localstorageのkeyが何になっているかを調べる
-    console.log("key:",key);
+    console.log("key:", key);
 
     //そのkeyを元にgetItemでJSONデータを取得
     console.log(localStorage.getItem(key));
+
     // JSONデータをオブジェクト化する
     const localStorageData = JSON.parse(localStorage.getItem(key));
 
-    // 個別で格納したデータが出力ができるかちゃんと確認する
-    console.log(localStorageData.text);
-    console.log(localStorageData.timer);
-
-    // 確認できたならそれを変数に入れる
+    // オブジェクトのデータを変数に入れる
+    const date = localStorageData.date;
     const text = localStorageData.text;
     const timer = localStorageData.timer;
 
+    // htmlで表示
     const html = `
     <tr>
-        <th>${key}</th>
+        <th>${date}</th>
         <td align=left>${timer}</td>
         <td >${text}</td>
-        <td align=right><button type="button" id="button-erase" valur=i>削除</button>
+        <td align=right><button type="button" id="button-erase" title=${key}>削除</button>
         <button type="button" valur=i>変更</button></td>
     </tr>
-    `
-    
-    $("#list").prepend(html);
- }
+    `;
 
+    $("#list").prepend(html);
+  }
+}
+
+//消去
+function erase() {
+  localStorage.clear();
+  $("#list").empty();
+}
 
 //-------------------------
 //  汎用関数
@@ -156,46 +163,45 @@ function timerSave() {
 
 //カウントアップ
 function countup() {
-    sec += 1;
+  sec += 1;
 
-    if (sec > 59) {
-        sec = 0;
-        min += 1;
-    }
+  if (sec > 59) {
+    sec = 0;
+    min += 1;
+  }
 
-    if (min > 59) {
-        min = 0;
-        hour += 1;
-    }
+  if (min > 59) {
+    min = 0;
+    hour += 1;
+  }
 
-    // 0埋め
-    sec_number = ('0' + sec).slice(-2);
-    min_number = ('0' + min).slice(-2);
-    hour_number = ('0' + hour).slice(-2);
+  // 0埋め
+  sec_number = ("0" + sec).slice(-2);
+  min_number = ("0" + min).slice(-2);
+  hour_number = ("0" + hour).slice(-2);
 
-    $('#timer').html(hour_number + ':' + min_number + ':' + sec_number);
+  $("#timer").html(hour_number + ":" + min_number + ":" + sec_number);
 }
-
 
 //今日の日付を取得する
 function setToday() {
-    const date = new Date()
-    const year = date.getFullYear()
-    const month = date.getMonth() + 1
-    const day = date.getDate()
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
 
-    const toTwoDigits = function(num, digit) {
-        num += ''
-        if (num.length < digit) {
-            num = '0' + num
-        }
-        return num
+  const toTwoDigits = function (num, digit) {
+    num += "";
+    if (num.length < digit) {
+      num = "0" + num;
     }
+    return num;
+  };
 
-    const yyyy = toTwoDigits(year, 4)
-    const mm = toTwoDigits(month, 2)
-    const dd = toTwoDigits(day, 2)
-    const ymd = yyyy + "-" + mm + "-" + dd;
+  const yyyy = toTwoDigits(year, 4);
+  const mm = toTwoDigits(month, 2);
+  const dd = toTwoDigits(day, 2);
+  const ymd = yyyy + "-" + mm + "-" + dd;
 
-    document.getElementById("date").value = ymd;
+  document.getElementById("date").value = ymd;
 }
