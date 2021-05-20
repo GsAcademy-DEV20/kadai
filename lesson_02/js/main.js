@@ -5,13 +5,6 @@ let timer;
 
 let countable;
 
-//オブジェクト型のjson形式
-var datalist = [{
-    date: date,
-    text: text,
-    timer: timer
-}]
-
 
 //-------------------------
 //  メイン
@@ -19,6 +12,8 @@ var datalist = [{
 
 $(document).ready(function() {
     init();
+    //日付は今日の日付
+    setToday();
 });
 
 // スタートボタン
@@ -54,30 +49,6 @@ function init() {
     hour = 0;
     countable = true;
     $('#timer').html('00:00:00');
-    //日付は今日の日付
-    setToday();
-
-}
-
-//ローカルサーバのデータを取得してロード
-
-let data = [];
-if (localStorage.getItem("datalist")) {
-    data = JSON.parse(localStorage.getItem("datalist"));
-}
-for (let i = 1; i < data.length; i++) {
-    //テンプレートリテラル
-    const html = `
-         <tr>
-             <th>${data[i].date}</th>
-             <td align=left>${data[i].timer}</td>
-             <td >${data[i].text}</td>
-             <td align=right><button type="button" id="button-erase" valur=i>削除</button>
-             <button type="button" value=i>変更</button></td>
-          </tr>
-         `
-        //const htmlをappendで埋め込み
-    $("#list").append(html);
 }
 
 //タイマー開始
@@ -98,29 +69,31 @@ function timerStop() {
 
 //セーブ
 function timerSave() {
-    const date = $("#date").val();
-    const text = $("#text").val();
+    const key = $("#date").val();
     const timer = $("#timer").html();
+    const text = $("#text").val();
+
 
     if (countable) {
-        if (date && timer) {
+        if (key && timer) {
 
-            //オブジェクトの配列として格納されたJSONデータにpushで追加
-            var addData = {
-                date: date,
+            //オブジェクトの配列としてJSONデータを用意
+            var valueObj = {
+                //ここはkeyの中にいれたいデータなのでkey自体はここにかかない
+                timer: timer,
                 text: text,
-                timer: timer
-            }
-            datalist.push(addData);
+            };
+            console.log(valueObj);
 
-
-            //文字列形式にしてローカルストレージに保存
-            localStorage.setItem("datalist", JSON.stringify(datalist));
+            //オブジェクトデータをJSON（文字列データ）に変換する
+            var json = JSON.stringify(valueObj);
+            //JSONデータをローカルストレージに保存する（key（箱）ごとにjson（箱の中身）を保存）
+            const json_text = localStorage.setItem(key, json);
 
             //テンプレートリテラル
             const html = `
             <tr>
-                <th>${date}</th>
+                <th>${key}</th>
                 <td align=left>${timer}</td>
                 <td >${text}</td>
                 <td align=right><button type="button" id="button-erase" valur=i>削除</button>
@@ -142,6 +115,40 @@ function timerSave() {
     }
 
 };
+
+//ロード
+ for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+
+    //localstorageのkeyが何になっているかを調べる
+    console.log("key:",key);
+
+    //そのkeyを元にgetItemでJSONデータを取得
+    console.log(localStorage.getItem(key));
+    // JSONデータをオブジェクト化する
+    const localStorageData = JSON.parse(localStorage.getItem(key));
+
+    // 個別で格納したデータが出力ができるかちゃんと確認する
+    console.log(localStorageData.text);
+    console.log(localStorageData.timer);
+
+    // 確認できたならそれを変数に入れる
+    const text = localStorageData.text;
+    const timer = localStorageData.timer;
+
+    const html = `
+    <tr>
+        <th>${key}</th>
+        <td align=left>${timer}</td>
+        <td >${text}</td>
+        <td align=right><button type="button" id="button-erase" valur=i>削除</button>
+        <button type="button" valur=i>変更</button></td>
+    </tr>
+    `
+    
+    $("#list").prepend(html);
+ }
+
 
 //-------------------------
 //  汎用関数

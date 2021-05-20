@@ -28,6 +28,7 @@ https://www.flatflag.nir87.com/click-1663
 $("#list").on("click", "#button-erase", function() {
     console.log("erase");
 });
+
 ```
 
 
