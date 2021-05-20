@@ -48,13 +48,31 @@
         </div>
     </main>
     <table id="list">
-     <!-- ここに追加データが挿入される -->
+        <!-- ここに保存したデータが挿入される -->
     </table>
 
     <footer class="footer">
         <div class="footer-link"><a href="#" target="_blank">利用規約</a></div>
         <div class="copyright"> <small>copyrights XXX All RIghts Reserved.</small></div>
     </footer>
+
+
+
+    <!-- オーバーレイ -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- 編集用モーダルウィンドウ -->
+    <div class="modal-window">
+        <div class="edit-title">へんしゅう</div>
+        <div class="btn-day">
+            <input type="date" id="edit-date"></input>
+        </div>
+        <div class="btn-text">
+            <input type="text" id="edit-text" placeholder="なにをしますか？">
+        </div>
+
+        <button class="js-close button-close">SAVE</button>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="js/main.js"></script>
