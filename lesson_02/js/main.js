@@ -5,6 +5,14 @@ let timer;
 
 let countable;
 
+//オブジェクト型のjson形式
+var datalist = [{
+    date: date,
+    text: text,
+    timer: timer
+}]
+
+
 //-------------------------
 //  メイン
 //-------------------------
@@ -38,8 +46,6 @@ $("#list").on("click", "#button-erase", function() {
 //-------------------------
 //  関数
 //-------------------------
-
-
 //初期化処理
 function init() {
     // 00:00:00から開始
@@ -50,33 +56,29 @@ function init() {
     $('#timer').html('00:00:00');
     //日付は今日の日付
     setToday();
+
 }
 
-for (let i = 0; i < localStorage.length; i++) {
-    //keyの0番目は[test]というデータの塊のことなのでそのkeyをもとにlocalStorage.getItem()
-    //を使って取得している
-    let data = [];
-    if (localStorage.getItem("datalist")) {
-        data = JSON.parse(localStorage.getItem("datalist"));
-    }
+//ローカルサーバのデータを取得してロード
 
+let data = [];
+if (localStorage.getItem("datalist")) {
+    data = JSON.parse(localStorage.getItem("datalist"));
+}
+for (let i = 1; i < data.length; i++) {
     //テンプレートリテラル
     const html = `
-     <tr>
-         <th>${data.date}</th>
-         <td align=left>${data.timer}</td>
-         <td >${data.text}</td>
-         <td align=right><button type="button" id="button-erase">削除</button>
-         <button type="button">変更</button></td>
-      </tr>
-     `
-
-    //const htmlをappendで埋め込み
+         <tr>
+             <th>${data[i].date}</th>
+             <td align=left>${data[i].timer}</td>
+             <td >${data[i].text}</td>
+             <td align=right><button type="button" id="button-erase" valur=i>削除</button>
+             <button type="button" value=i>変更</button></td>
+          </tr>
+         `
+        //const htmlをappendで埋め込み
     $("#list").append(html);
-
-
 }
-
 
 //タイマー開始
 function timerStart() {
@@ -94,7 +96,6 @@ function timerStop() {
     countable = true;
 };
 
-
 //セーブ
 function timerSave() {
     const date = $("#date").val();
@@ -104,23 +105,27 @@ function timerSave() {
     if (countable) {
         if (date && timer) {
 
-            //json形式で保存
-            var datalist = {
+            //オブジェクトの配列として格納されたJSONデータにpushで追加
+            var addData = {
                 date: date,
                 text: text,
                 timer: timer
             }
+            datalist.push(addData);
 
+
+            //文字列形式にしてローカルストレージに保存
             localStorage.setItem("datalist", JSON.stringify(datalist));
+
             //テンプレートリテラル
             const html = `
             <tr>
                 <th>${date}</th>
                 <td align=left>${timer}</td>
                 <td >${text}</td>
-                <td align=right><button type="button" id="button-erase">削除</button>
-                <button type="button">変更</button></td>
-             </tr>
+                <td align=right><button type="button" id="button-erase" valur=i>削除</button>
+                <button type="button" valur=i>変更</button></td>
+            </tr>
             `
 
             //const htmlをappendで埋め込み
@@ -137,8 +142,6 @@ function timerSave() {
     }
 
 };
-
-
 
 //-------------------------
 //  汎用関数

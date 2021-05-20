@@ -23,8 +23,9 @@
     .site-header {
         position: relative;
         text-align: center;
+        justify-content: center;
         margin: 13px o;
-        height: 40px;
+        padding: 10px;
         min-width: 960px;
         font-size: 32px;
         background: #78BBE6;
