@@ -8,9 +8,10 @@ let countable;
 //-------------------------
 //  メイン
 //-------------------------
-
+//起動時処理
 $(document).ready(function() {
-    init();
+    initForm();
+    initTimer();
     setToday();
     load();
 });
@@ -19,6 +20,10 @@ $(document).ready(function() {
 $("#button-start").on("click", function() {
     if (countable) {
         timerStart();
+        //ボタンの見た目
+        document.getElementById("image-start").src = "img/button-start_off.png";
+        document.getElementById("image-stop").src = "img/button-stop.png";
+
     }
 });
 
@@ -26,12 +31,22 @@ $("#button-start").on("click", function() {
 $("#button-stop").on("click", function() {
     if (!countable) {
         timerStop();
+        //ボタンの見た目
+        document.getElementById("image-start").src = "img/button-start.png";
+        document.getElementById("image-stop").src = "img/button-stop_off.png";
     }
 });
 
 // SAVEボタン
 $("#button-save").on("click", function() {
-    save();
+    const date = $("#date").val();
+    const timer = $("#timer").html();
+    const text = $("#text").val();
+    const key = date + timer + text;
+    save(date, timer, text, key);
+    //ボタンの見た目
+    document.getElementById("image-start").src = "img/button-start.png";
+    document.getElementById("image-stop").src = "img/button-stop.png";
 });
 
 // 削除ボタン
@@ -43,38 +58,54 @@ $("#list").on("click", "#button-erase", function() {
 
 // 編集ボタン
 $("#list").on("click", "#button-edit", function() {
-    //編集モーダルを開く
-    $('#overlay, .modal-window').fadeIn();
-    $("body").addClass("no_scroll");
-
+    openModal();
     let key = this.title;
     edit(key);
 });
 
 
-// 編集モーダルを閉じる
-$('.js-close , #overlay').click(function() {
-    $("body").removeClass("no_scroll");
-    $('#overlay, .modal-window').fadeOut();
+// 編集保存
+$(document).on("click", "#edit-save", function() {
+    let key = this.title;
+    const localStorageData = JSON.parse(localStorage.getItem(key));
+    const date = $("#edit-date").val();
+    const timer = localStorageData.timer;
+    const text = $("#edit-text").val();
+
+    save(date, timer, text, key);
+    closeModal();
+    load();
+
 });
 
+// 編集モーダルを閉じる
+$('.js-close , #overlay').click(function() {
+    closeModal();
+});
 
 //-------------------------
 //  関数
 //-------------------------
 //初期化処理
-function init() {
-    // 00:00:00から開始
+//  00:00:00から開始
+function initTimer() {
     sec = 0;
     min = 0;
     hour = 0;
     countable = true;
     $("#timer").html("00:00:00");
+
+}
+//  フォームは空に
+function initForm() {
+
+    var textForm = document.getElementById("text");
+    textForm.value = '';
 }
 
 //タイマー開始
 function timerStart() {
-    init();
+    initTimer();
     timer = setInterval(countup, 1000);
     countable = false;
 }
@@ -86,11 +117,7 @@ function timerStop() {
 }
 
 //セーブ
-function save() {
-    const date = $("#date").val();
-    const timer = $("#timer").html();
-    const text = $("#text").val();
-    const key = date + timer + text;
+function save(date, timer, text, key) {
 
     if (countable) {
         if (key && timer) {
@@ -121,7 +148,9 @@ function save() {
             $("#list").append(html);
 
             //初期化
-            init();
+            initTimer();
+            initForm();
+
         } else {
             alert("日付を入力してね");
         }
@@ -131,22 +160,14 @@ function save() {
 }
 
 
-
-
-
 //ロード
 function load() {
 
     $("#list").empty();
 
-    //htmlのロードしてリストに埋める
     for (let i = 0; i < localStorage.length; i++) {
         //localstorageのkeyを取得
         const key = localStorage.key(i);
-        console.log("key:", key);
-
-        //そのkeyを元にgetItemでJSONデータを取得
-        console.log(localStorage.getItem(key));
 
         // JSONデータをオブジェクト化する
         const localStorageData = JSON.parse(localStorage.getItem(key));
@@ -156,7 +177,7 @@ function load() {
         const text = localStorageData.text;
         const timer = localStorageData.timer;
 
-        //テンプレートリテラル
+        //テンプレートリテラルで埋め込み
         const html = `
             <tr>
                 <th>${date}</th>
@@ -175,16 +196,27 @@ function load() {
 //編集
 function edit(key) {
 
+    // JSONデータをオブジェクト化する
     const localStorageData = JSON.parse(localStorage.getItem(key));
+
+    // オブジェクトのデータを変数に入れる
     const date = localStorageData.date;
     const text = localStorageData.text;
 
-    // 編集ボタン内に引継ぎデータをいれる
+    // 編集用のフォームに編集前のデータをいれる
     document.getElementById("edit-date").value = date;
     document.getElementById("edit-text").value = text;
 
-    debugger;
+    //テンプレートリテラルで埋め込み
+    const html = `
+     <button class="button-close" id="edit-save" title=${key}>SAVE</button>
+     `;
+
+    $("#edit-list").append(html);
+
+
 }
+
 
 
 //-------------------------
@@ -234,4 +266,15 @@ function setToday() {
     const ymd = yyyy + "-" + mm + "-" + dd;
 
     document.getElementById("date").value = ymd;
+}
+
+//モーダルウィンドウ
+function openModal() {
+    $('#overlay, .modal-window').fadeIn();
+    $("body").addClass("no_scroll");
+}
+
+function closeModal() {
+    $("body").removeClass("no_scroll");
+    $('#overlay, .modal-window').fadeOut();
 }

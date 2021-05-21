@@ -32,10 +32,10 @@
                 </div>
                 <div class="btn-set">
                     <a id="button-start">
-                        <img src="img/button-start.png" alt="START">
+                        <img id="image-start" src="img/button-start.png" alt="START">
                     </a>
                     <a id="button-stop">
-                        <img src="img/button-stop.png" alt="STOP">
+                        <img id="image-stop" src="img/button-stop.png" alt="STOP">
                     </a>
                 </div>
 
@@ -70,8 +70,10 @@
         <div class="btn-text">
             <input type="text" id="edit-text" placeholder="なにをしますか？">
         </div>
-
-        <button class="js-close button-close">SAVE</button>
+        <div id="edit-list">
+            <!-- ここに保存したデータが挿入される -->
+        </div>
+        <!-- <button class="js-close button-close" id="edit-save">SAVE</button> -->
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
