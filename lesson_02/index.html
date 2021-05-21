@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <div class="site-header">べんきょうきろく</div>
+    <div class="site-header">つみあげきろく</div>
 
     <header class="header">
         <p id="timer">00:00:00</p>
@@ -28,14 +28,14 @@
                     <input type="date" id="date"></input>
                 </div>
                 <div class="btn-text">
-                    <input type="text" id="text" placeholder="何を勉強する？">
+                    <input type="text" id="text" placeholder="なにをしますか？">
                 </div>
                 <div class="btn-set">
                     <a id="button-start">
-                        <img src="img/button-start.png" alt="START">
+                        <img id="image-start" src="img/button-start.png" alt="START">
                     </a>
                     <a id="button-stop">
-                        <img src="img/button-stop.png" alt="STOP">
+                        <img id="image-stop" src="img/button-stop.png" alt="STOP">
                     </a>
                 </div>
 
@@ -48,13 +48,33 @@
         </div>
     </main>
     <table id="list">
-        <!-- ここに追加データが挿入される -->
+        <!-- ここに保存したデータが挿入される -->
     </table>
 
     <footer class="footer">
         <div class="footer-link"><a href="#" target="_blank">利用規約</a></div>
         <div class="copyright"> <small>copyrights XXX All RIghts Reserved.</small></div>
     </footer>
+
+
+
+    <!-- オーバーレイ -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- 編集用モーダルウィンドウ -->
+    <div class="modal-window">
+        <div class="edit-title">へんしゅう</div>
+        <div class="btn-day">
+            <input type="date" id="edit-date"></input>
+        </div>
+        <div class="btn-text">
+            <input type="text" id="edit-text" placeholder="なにをしますか？">
+        </div>
+        <div id="edit-list">
+            <!-- ここに保存したデータが挿入される -->
+        </div>
+        <!-- <button class="js-close button-close" id="edit-save">SAVE</button> -->
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="js/main.js"></script>
