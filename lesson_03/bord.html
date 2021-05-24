@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <!--ヘッダー-->
+        <div class="header-countainer">
+            <ul class="header-left">
+                <li>
+                    <a href="index.html"> <img id="exit" class="grabbable icon" src="img/icon-exit.png" /> </a>
+                </li>
+            </ul>
+            <ul class="header-right">
+                <li><img id="pen" class="grabbable icon" src="img/icon-pen.png" /></li>
+                <li><img id="eraser" class="grabbable icon" src="img/icon-eraser.png" /></li>
+                <li><img id="clear" class="grabbable icon" src="img/icon-clear.png" /></li>
+                <li><img id="chat" class="grabbable icon" src="img/icon-chat.png" /></li>
+            </ul>
+        </div>
+
+        <!--チャット-->
+        <div class="chat-container">
+            <div>
+                <!-- テキストエリア -->
+                テキスト
+                <textarea name="" id="text" cols="30" rows="10"></textarea>
+            </div>
+
+            <div>
+                <!-- 送信ボタン -->
+                <button id="send">送信</button>
+            </div>
+
+            <div>
+                <!-- 保存されたデータが表示される箇所 -->
+                <div id="output"></div>
+            </div>
+        </div>
+
+        <!--ドロー-->
+        <div class="draw-container">
+            <!--ホワイトボード-->
+            <canvas id="whiteboard" width="1000" height="1000">HTML5 canvas not supported :c</canvas>
+            <!--オンラインの人数-->
+            <p id="online" class="unselectable">users online: <b id="count"></b></p>
+        </div>
+
+
+    </div>
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<!-- [firebase-app]の[-app]部分を削除（全部読み込んでるので重い場合は必要なものだけ読み込むようにする） -->
+<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase.js"></script>
+<script src="js/firebase_init.js"></script>
+<script src="js/main.js"></script>
+
+
+
+</html>
