@@ -14,16 +14,16 @@
 </head>
 
 <body class="index">
-
     <div class="index-container">
         <!--名前-->
         <div class="name-container">
             <div>Name</div>
             <div class="name-form"><input type="text" id="username"></div>
         </div>
+        <!--アバター-->
         <div class="avator-container">
             <div>Avator</div>
-            <div class="selected-avator"><img src="img/chara0.png" alt=""></div>
+            <div><img id="selected-avator" src="img/chara0.png" alt=""></div>
             <div>
                 <ul class="select-avator-list">
                     <li><img class="chara" data-image="0" src="img/chara0.png" alt=""></li>
@@ -37,11 +37,9 @@
         <div class="enter-container">
             <div id="enter" class="enter-btn">ENTER</div>
         </div>
-
     </div>
-
-
 </body>
+
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <!-- [firebase-app]の[-app]部分を削除（全部読み込んでるので重い場合は必要なものだけ読み込むようにする） -->
 <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase.js"></script>

@@ -6,7 +6,7 @@
 body {
     color: #222222;
     font-family: "メイリオ";
-    font-size: 24px;
+    font-size: 20px;
     /* 全体を中央ぞろえ */
     margin: auto;
     font-family: 'DotGothic16', sans-serif;
@@ -152,4 +152,8 @@ textarea {
     background: #D5EEFF;
     border-radius: 10px;
     margin: 10px;
+}
+
+#output img {
+    width: 36px;
 }

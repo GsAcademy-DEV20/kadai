@@ -1,32 +1,42 @@
-// canvas準備
-var srcs = [
-    "../img/studyroom_bg.png",
-    "../img/studyroom_desk.png",
+//描画
+function drawOrder(imgSrc) {
 
-];
+    var canvas = document.getElementById("room");
+    if (canvas) {
+        var ctx = canvas.getContext("2d");
 
-var canvas = document.getElementById("room");
-if (canvas) {
-    var ctx = canvas.getContext("2d");
+        //描画順整えるため読み込んでから描画する
+        var images = [];
+        for (var i in imgSrc) {
+            images[i] = new Image();
+            images[i].src = imgSrc[i];
+        }
+        console.log(images);
 
-    var images = [];
-    for (var i in srcs) {
-        images[i] = new Image();
-        images[i].src = srcs[i];
-    }
+        var loadedCount = 1;
+        for (var i in images) {
+            images[i].addEventListener('load', function() {
+                //全部画像を読み込んだら
+                if (loadedCount == images.length) {
+                    var x;
+                    var y;
+                    for (var j in images) {
 
-    //描画順制御
-    var loadedCount = 1;
-    for (var i in images) {
-        images[i].addEventListener('load', function() {
-            if (loadedCount == images.length) {
-                var x = 0;
-                var y = 0;
-                for (var j in images) {
-                    ctx.drawImage(images[j], x, y, 960, 720);
+                        if (j === "1") {
+                            //キャラ
+                            x = Math.random() * 900;
+                            y = Math.random() * 700;
+                            ctx.drawImage(images[j], x, y, 48, 96);
+                        } else {
+                            //ステージ
+                            x = 0;
+                            y = 0;
+                            ctx.drawImage(images[j], x, y, 960, 720);
+                        }
+                    }
                 }
-            }
-            loadedCount++;
-        }, false);
+                loadedCount++;
+            }, false);
+        }
     }
 }
