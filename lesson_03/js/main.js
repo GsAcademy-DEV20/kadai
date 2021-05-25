@@ -1,7 +1,8 @@
 //firebaseのデーターベースを使う
 const newPostRef = firebase.database().ref();
-let username;
-
+let myName;
+let myChara = 0;
+const charaImage = ["chara0.png", "chara1.png", "chara2.png", "chara3.png"];
 // ================================================
 //  メイン
 // ================================================
@@ -10,12 +11,16 @@ $("#enter").on("click", function() {
     enter();
 });
 
+$(".chara").on("click", function() {
+    myChara = $(this).attr("data-image");
+    console.log("myChara:" + myChara);
+});
+
 //  ==ヘッダー====================
 
 $("#clear").on("click", function() {
     clear();
 });
-
 
 
 //  ==チャット====================
@@ -27,6 +32,7 @@ $("#send").on("click", function() {
 $("#text").on("keydown", function(e) {
     if (e.keyCode === 13) {
         send();
+        return false; //キー解除
     }
 })
 
@@ -34,6 +40,7 @@ $("#username").on("keydown", function(e) {
     console.log(e);
     if (e.keyCode === 13) {
         enter();
+        return false; //キー解除
     }
 })
 
@@ -44,18 +51,21 @@ $("#username").on("keydown", function(e) {
 //入室
 function enter() {
 
-    username = $("#username").val();
+    myName = $("#username").val();
 
     //ローカルストレージに名前を保存
-    localStorage.setItem('username', username);
+    localStorage.setItem('username', myName);
+    localStorage.setItem('chara', myChara);
+
 
     //名前をFirebaseに送る
     newPostRef.push({
-        username: username, //名前
+        username: myName, //名前
         text: "", //テキストエリア
+        chara: myChara,
     })
 
-    if (username !== "") {
+    if (myName !== "") {
         //ボードに遷移
         location.href = "bord.html";
     } else {
@@ -73,6 +83,7 @@ function clear() {
     newPostRef.push({
         username: username, //名前
         text: "", //テキストエリア
+        chara: 0,
     })
     location.reload();
 
@@ -87,26 +98,45 @@ newPostRef.on("child_added", function(data) {
 
     username = v.username;
     text = v.text;
+    chara = v.chara;
+
+    myName = localStorage.getItem('username');
+
+    console.log("charaImage[chara]" + charaImage[chara]);
 
     if (username && text) {
-        let str = `<p>${username}<br>${text}</p>`;
+        let str = `<img src='img/${charaImage[chara]}'><p>${username}：<br>${text}</p>`;
+
         // ここでデータをhtmlに埋め込む
         $("#output").prepend(str);
-    }
-    console.log(username);
 
+        // 自分の時と相手の時で見た目を変える
+        //同じ
+        if (username === myName) {
+            console.log(document.querySelector('.output p'));
+            if (document.querySelector('.output p')) {
+                document.querySelector('.output p').classList.add("chat-myMessage");
+            }
+        } else {
+            if (document.querySelector('.output p')) {
+                document.querySelector('.output p').classList.add("chat-otherMessage");
+            }
+
+        }
+    }
 })
 
 //送信
 function send() {
     //ローカルストレージに保存してある名前をFirebaseに送る
-    var data = localStorage.getItem('username');
+    myName = localStorage.getItem('username');
+    myChara = localStorage.getItem('chara');
 
     newPostRef.push({
-        username: data, //名前
+        username: myName, //名前
         text: $("#text").val(), //テキストエリア
+        chara: myChara,
     })
-    console.log(data);
     $("#text").val(""); //空にする
 }
 
