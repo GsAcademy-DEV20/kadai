@@ -178,7 +178,6 @@ function send() {
 //描画順を考慮して描画
 function drawOrder(imgSrc) {
     if (canvas) {
-
         var ctx = canvas.getContext("2d");
 
         //描画順整えるため読み込んでから描画する
