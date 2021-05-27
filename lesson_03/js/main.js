@@ -68,8 +68,13 @@ $("#username").on("keydown", function(e) {
 function enter() {
     //ボードに使う変数を初期化
     myName = $("#username").val();
-    myCharaX = Math.random() * 900;
-    myCharaY = Math.random() * 700;
+
+
+    // 配列からランダムで値を選択
+    const min = 100;
+    const max = 700;
+    myCharaX = Math.floor(Math.random() * (max + 1 - min)) + min;
+    myCharaY = Math.floor(Math.random() * (max + 1 - min)) + min;
 
     //ローカルストレージに保存
     localStorage.setItem('username', myName);
@@ -99,7 +104,6 @@ function enter() {
 // ＊ヘッダー
 //クリア
 function clear() {
-
     // データをクリア
     newPostRef.remove();
     // 名前だけ入れて再度データ作成
