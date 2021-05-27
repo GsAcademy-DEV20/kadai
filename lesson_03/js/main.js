@@ -18,7 +18,6 @@ $(".chara").on("click", function() {
     console.log("myChara:" + myChara);
 
     document.getElementById("selected-avator").src = "img/" + charaImage[myChara];
-
 });
 
 //  ボード
@@ -66,7 +65,6 @@ function enter() {
     localStorage.setItem('username', myName);
     localStorage.setItem('chara', myChara);
 
-
     //名前をFirebaseに送る
     newPostRef.push({
         username: myName, //名前
@@ -109,7 +107,6 @@ function get(data) {
     username = v.username;
     text = v.text;
     chara = v.chara;
-
 
     console.log("charaImage[chara]" + charaImage[chara]);
 
