@@ -7,6 +7,11 @@ const charaImage = ["chara0.png", "chara1.png", "chara2.png", "chara3.png"];
 var canvas = document.getElementById("room");
 let myCharaX;
 let myCharaY;
+//時間
+const nowDate = new Date()
+let hour;
+let minutes;
+let nowTime;
 
 // ================================================
 //  メイン
@@ -75,6 +80,9 @@ function enter() {
     const max = 700;
     myCharaX = Math.floor(Math.random() * (max + 1 - min)) + min;
     myCharaY = Math.floor(Math.random() * (max + 1 - min)) + min;
+    //時間を取得
+    nowTime = getNowTime();
+    console.log("nowTime" + nowTime);
 
     //ローカルストレージに保存
     localStorage.setItem('username', myName);
@@ -89,6 +97,7 @@ function enter() {
         chara: myChara,
         charaX: myCharaX,
         charaY: myCharaY,
+        date: nowTime,
     })
 
     if (myName !== "") {
@@ -102,10 +111,12 @@ function enter() {
 //  ボード
 // ====================
 // ＊ヘッダー
-//クリア
+//クリア（forDebug）
 function clear() {
     // データをクリア
     newPostRef.remove();
+    //時間は今の時間を取得
+    nowTime = getNowTime();
     // 名前だけ入れて再度データ作成
     newPostRef.push({
         username: username, //名前
@@ -113,6 +124,7 @@ function clear() {
         chara: 0,
         charaX: 0,
         charaY: 0,
+        date: nowTime,
     })
     location.reload();
 }
@@ -127,12 +139,13 @@ function get(data) {
     username = v.username;
     text = v.text;
     chara = v.chara;
+    date = v.date;
 
     console.log("charaImage[chara]" + charaImage[chara]);
-
+    debugger;
     if (username && text) {
         //データを埋め込む
-        let str = `<img src='img/${charaImage[chara]}'><p>${username}：<br>${text}</p>`;
+        let str = `<img src='img/${charaImage[chara]}'>${date}<p>${username}：<br>${text}</p>`;
         $("#output").prepend(str);
 
         //自分の時と相手の時で見た目を変える
@@ -190,6 +203,8 @@ function send() {
     myChara = localStorage.getItem('chara');
     myCharaX = localStorage.getItem('charaX');
     myCharaY = localStorage.getItem('charaY');
+    //時間は今の時間を取得
+    nowTime = getNowTime();
 
     newPostRef.push({
         username: myName, //名前
@@ -197,6 +212,7 @@ function send() {
         chara: myChara,
         charaX: myCharaX,
         charaY: myCharaY,
+        date: nowTime,
     })
     $("#text").val(""); //空にする
 }
@@ -243,4 +259,12 @@ function drawOrder(imgSrc, charaX, charaY) {
             }, false);
         }
     }
+}
+
+function getNowTime() {
+    hour = (nowDate.getHours() >= 10) ? nowDate.getHours() : '0' + nowDate.getHours();
+    minutes = (nowDate.getMinutes() >= 10) ? nowDate.getMinutes() : '0' + nowDate.getMinutes();
+    nowTime = hour + ':' + minutes;
+    console.log(nowTime);
+    return nowTime;
 }
