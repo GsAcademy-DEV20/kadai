@@ -6,8 +6,7 @@
 body {
     color: #222222;
     font-family: "メイリオ";
-    font-size: 20px;
-    /* 全体を中央ぞろえ */
+    font-size: 24px;
     margin: auto;
     font-family: 'DotGothic16', sans-serif;
     font-weight: bold;
@@ -117,12 +116,13 @@ input {
  ----------------------------------------*/
 
 .main-container {
-    /* 並列にする */
     display: flex;
-    /* アイテムを中央付近にまとめる */
     justify-content: flex-start;
     margin: auto;
 }
+
+
+/* チャット */
 
 .chat-container {
     min-width: 300px;
@@ -143,6 +143,7 @@ textarea {
     background: #F99F48;
     border-radius: 10px;
     margin: 10px;
+    word-wrap: break-word;
 }
 
 .chat-otherMessage {
@@ -152,6 +153,17 @@ textarea {
     background: #D5EEFF;
     border-radius: 10px;
     margin: 10px;
+    word-wrap: break-word;
+}
+
+
+/* キャンバス */
+
+.draw-container {
+    width: 920px;
+    height: 720px;
+    background-image: url("../img/studyroom_bg.png");
+    background-repeat: no-repeat;
 }
 
 #output img {

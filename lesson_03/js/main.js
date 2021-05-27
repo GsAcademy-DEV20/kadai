@@ -8,7 +8,6 @@ const charaImage = ["chara0.png", "chara1.png", "chara2.png", "chara3.png"];
 // ================================================
 var canvas = document.getElementById("room");
 
-
 //  入口
 $("#enter").on("click", function() {
     enter();
@@ -22,25 +21,21 @@ $(".chara").on("click", function() {
 
 });
 
-
 //  ボード
 newPostRef.on("child_added", function(data) {
     get(data);
     draw(data);
 });
 
-
 //  ヘッダー
 $("#clear").on("click", function() {
     clear();
 });
 
-
 // チャット
 $("#send").on("click", function() {
     send();
 });
-
 
 //キー入力取得
 $("#text").on("keydown", function(e) {
@@ -156,17 +151,14 @@ function draw(data) {
         ];
 
         var imgSrc = [
-            "img/studyroom_bg.png",
             charaImgSrc[chara],
             "img/studyroom_desk.png",
         ];
-
-        // Canvas準備
+        console.log(imgSrc);
+        // 描画順を考慮して描画
         drawOrder(imgSrc);
     }
-
 }
-
 
 //送信
 function send() {
@@ -182,17 +174,13 @@ function send() {
     $("#text").val(""); //空にする
 }
 
-
 // ========================
 //  汎用関数
 // ========================
 
-//描画
-function drawOrder() {
-
-
+//描画順を考慮して描画
+function drawOrder(imgSrc) {
     if (canvas) {
-
 
         var ctx = canvas.getContext("2d");
 
@@ -212,8 +200,7 @@ function drawOrder() {
                     var x;
                     var y;
                     for (var j in images) {
-
-                        if (j === "1") {
+                        if (j === "0") {
                             //キャラ
                             x = Math.random() * 900;
                             y = Math.random() * 700;
