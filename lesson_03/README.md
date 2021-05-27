@@ -1,5 +1,6 @@
 # #03 Firebase
 ## ①課題内容（どんな作品か）
+![2021-05-27_20h28_42](https://user-images.githubusercontent.com/69302785/119818477-398cea00-bf2a-11eb-9a38-15d804a95ba0.png)
 - 課題
 ```
 ◇ Line風アプリの課題最低限機能
@@ -11,7 +12,6 @@
 　「アイコン」「翻訳」「Map連携」「Canvas連携」など
 ```
 - 内容
-![2021-05-27_20h28_42](https://user-images.githubusercontent.com/69302785/119818477-398cea00-bf2a-11eb-9a38-15d804a95ba0.png)
 ```
 ・なんちゃってオンラインゲーム風チャット
 ・名前とアバターを選択してチャットができる
