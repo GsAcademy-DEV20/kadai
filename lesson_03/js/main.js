@@ -3,12 +3,17 @@ const newPostRef = firebase.database().ref();
 let myName;
 let myChara = 0;
 const charaImage = ["chara0.png", "chara1.png", "chara2.png", "chara3.png"];
+//canvas使う
+var canvas = document.getElementById("room");
+let myCharaX;
+let myCharaY;
+
 // ================================================
 //  メイン
 // ================================================
-var canvas = document.getElementById("room");
-
+// ====================
 //  入口
+// ====================
 $("#enter").on("click", function() {
     enter();
 });
@@ -19,8 +24,9 @@ $(".chara").on("click", function() {
 
     document.getElementById("selected-avator").src = "img/" + charaImage[myChara];
 });
-
+// ====================
 //  ボード
+// ====================
 newPostRef.on("child_added", function(data) {
     get(data);
     draw(data);
@@ -55,21 +61,29 @@ $("#username").on("keydown", function(e) {
 // ================================================
 //  処理
 // ================================================
-//  ==入口========================
+// ====================
+//  入口
+// ====================
 //入室
 function enter() {
-
+    //ボードに使う変数を初期化
     myName = $("#username").val();
+    myCharaX = Math.random() * 900;
+    myCharaY = Math.random() * 700;
 
-    //ローカルストレージに名前を保存
+    //ローカルストレージに保存
     localStorage.setItem('username', myName);
     localStorage.setItem('chara', myChara);
+    localStorage.setItem('charaX', myCharaX);
+    localStorage.setItem('charaY', myCharaY);
 
-    //名前をFirebaseに送る
+    //Firebaseに送る
     newPostRef.push({
         username: myName, //名前
         text: "＞入室しました", //テキストエリア
         chara: myChara,
+        charaX: myCharaX,
+        charaY: myCharaY,
     })
 
     if (myName !== "") {
@@ -79,8 +93,10 @@ function enter() {
         alert("名前を入力してください");
     }
 }
-
-//  ==ヘッダー========================
+// ====================
+//  ボード
+// ====================
+// ＊ヘッダー
 //クリア
 function clear() {
 
@@ -91,13 +107,13 @@ function clear() {
         username: username, //名前
         text: "", //テキストエリア
         chara: 0,
+        charaX: 0,
+        charaY: 0,
     })
     location.reload();
-
 }
 
-//  ==チャット====================
-
+//  ＊チャット
 //受信
 function get(data) {
     //Firebaseに保存されたデータを取得
@@ -136,6 +152,12 @@ function draw(data) {
     //Firebaseに保存されたデータを取得
     let v = data.val();
     chara = v.chara;
+    charaX = v.charaX;
+    charaY = v.charaY;
+    console.log(v);
+    console.log("charaX:" + charaX);
+    console.log("charaY:" + charaY);
+
 
     if (username && text) {
         //データを埋め込む
@@ -153,30 +175,34 @@ function draw(data) {
         ];
         console.log(imgSrc);
         // 描画順を考慮して描画
-        drawOrder(imgSrc);
+        drawOrder(imgSrc, charaX, charaY);
     }
 }
 
 //送信
 function send() {
-    //ローカルストレージに保存してある名前をFirebaseに送る
+    //テキスト以外はローカルストレージに保存してある名前をFirebaseに送る
     myName = localStorage.getItem('username');
     myChara = localStorage.getItem('chara');
+    myCharaX = localStorage.getItem('charaX');
+    myCharaY = localStorage.getItem('charaY');
 
     newPostRef.push({
         username: myName, //名前
         text: $("#text").val(), //テキストエリア
         chara: myChara,
+        charaX: myCharaX,
+        charaY: myCharaY,
     })
     $("#text").val(""); //空にする
 }
 
-// ========================
+// ================================================
 //  汎用関数
-// ========================
+// ================================================
 
 //描画順を考慮して描画
-function drawOrder(imgSrc) {
+function drawOrder(imgSrc, charaX, charaY) {
     if (canvas) {
         var ctx = canvas.getContext("2d");
 
@@ -198,8 +224,8 @@ function drawOrder(imgSrc) {
                     for (var j in images) {
                         if (j === "0") {
                             //キャラ
-                            x = Math.random() * 900;
-                            y = Math.random() * 700;
+                            x = charaX;
+                            y = charaY;
                             ctx.drawImage(images[j], x, y, 48, 96);
                         } else {
                             //ステージ
