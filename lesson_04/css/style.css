@@ -1,0 +1,172 @@
+/* ----------------------------------------
+    汎用
+ ----------------------------------------*/
+
+@charset "UTF-8";
+body {
+    color: #222222;
+    font-family: "メイリオ";
+    font-size: 24px;
+    margin: auto;
+    font-family: 'DotGothic16', sans-serif;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+}
+
+ul {
+    list-style: none;
+}
+
+input {
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 24px;
+    text-align: center;
+}
+
+
+/* ----------------------------------------
+   トップページ
+ ----------------------------------------*/
+
+.index-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    background-color: #78bbe6;
+    border-radius: 5px;
+    padding: 40px;
+    text-align: center;
+    color: #fff;
+}
+
+.name-container,
+.avator-container,
+.enter-container {
+    align-items: center;
+    justify-content: space-between;
+    width: 200px;
+    margin: 0 auto 30px;
+}
+
+.name-container div,
+.avator-container div {
+    margin: 10px 0;
+}
+
+.select-avator-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.select-avator-list img {
+    width: 30px;
+    margin: 0 15px 10px;
+    opacity: 0.5;
+}
+
+.enter-btn {
+    background-color: #F99F48;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.name-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* ----------------------------------------
+   ボードページ
+ ----------------------------------------*/
+
+
+/* ----------------------------------------
+    ヘッダー
+ ----------------------------------------*/
+
+.header-countainer {
+    background-color: #78BBE6;
+    display: flex;
+    /* アイテムを中央付近にまとめる */
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+}
+
+.header-countainer img {
+    width: 40px;
+}
+
+.header {
+    display: flex;
+}
+
+.header li {
+    margin: 10px 15px;
+}
+
+
+/* ----------------------------------------
+    メイン
+ ----------------------------------------*/
+
+.main-container {
+    display: flex;
+    justify-content: flex-start;
+    margin: auto;
+}
+
+
+/* チャット */
+
+.chat-container {
+    min-width: 300px;
+    margin: 20px auto;
+    height: 700px;
+    overflow: auto;
+}
+
+textarea {
+    width: 300px;
+    padding: 5px;
+}
+
+.chat-myMessage {
+    width: fit-content;
+    max-width: 200px;
+    padding: 10px;
+    background: #F99F48;
+    border-radius: 10px;
+    margin: 10px;
+    word-wrap: break-word;
+}
+
+.chat-otherMessage {
+    width: fit-content;
+    max-width: 200px;
+    padding: 10px;
+    background: #D5EEFF;
+    border-radius: 10px;
+    margin: 10px;
+    word-wrap: break-word;
+}
+
+
+/* キャンバス */
+
+.draw-container {
+    width: 920px;
+    height: 720px;
+    background-image: url("../img/studyroom_bg.png");
+    background-repeat: no-repeat;
+}
+
+#output img {
+    width: 36px;
+    margin-right: 10px;
+}

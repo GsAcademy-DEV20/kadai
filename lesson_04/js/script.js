@@ -1,6 +1,6 @@
  //Peer作成
  const peer = new Peer({
-     key: '***',
+     key: SKYWAY_KEY,
      debug: 3
  });
 
