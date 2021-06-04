@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -7,43 +7,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" href="img/favicon.ico">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <script src="https://cdn.webrtc.ecl.ntt.com/skyway-4.4.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <title>Document</title>
 </head>
 
-<body class="index">
-    <div class="index-container">
-        <!--名前-->
-        <div class="name-container">
-            <div>Name</div>
-            <div class="name-form"><input type="text" id="username" placeholder="Enter Your Name.."></div>
-        </div>
-        <!--アバター-->
-        <div class="avator-container">
-            <div>Avator</div>
-            <div><img id="selected-avator" src="img/chara0.png" alt=""></div>
+<body>
+    <div class="container">
+        <h1 class="heading">Simple Video Call</h1>
+        <div class="room">
             <div>
-                <ul class="select-avator-list">
-                    <li><img class="chara" data-image="0" src="img/chara0.png" alt=""></li>
-                    <li><img class="chara" data-image="1" src="img/chara1.png" alt=""></li>
-                    <li><img class="chara" data-image="2" src="img/chara2.png" alt=""></li>
-                    <li><img class="chara" data-image="3" src="img/chara3.png" alt=""></li>
-                </ul>
+                <video id="local-stream"></video>
+                <button id="join-trigger">Join</button>
+                <button id="leave-trigger">Leave</button>
             </div>
-        </div>
-        <!--入室-->
-        <div class="enter-container">
-            <div id="enter" class="enter-btn">ENTER</div>
+            <div class="remote-streams" id="remote-streams"></div>
+            <div>
+                <pre class="messages" id="messages"></pre>
+            </div>
         </div>
     </div>
 </body>
-
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<!-- [firebase-app]の[-app]部分を削除（全部読み込んでるので重い場合は必要なものだけ読み込むようにする） -->
-<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase.js"></script>
-<script src="env/firebase_init.js"></script>
-<script src="js/main.js"></script>
+<script src="env/key.js"></script>
+<script src="js/multi.js"></script>
 
 </html>

@@ -3,20 +3,18 @@ const Peer = window.Peer;
 
 //通話やチャットに必要な要素をHTMLから取得
 (async function main() {
-    const localVideo = document.getElementById('js-local-stream');
-    const joinTrigger = document.getElementById('js-join-trigger');
-    const leaveTrigger = document.getElementById('js-leave-trigger');
-    const remoteVideos = document.getElementById('js-remote-streams');
-    const roomId = document.getElementById('js-room-id');
-    const localText = document.getElementById('js-local-text');
-    const sendTrigger = document.getElementById('js-send-trigger');
-    const messages = document.getElementById('js-messages');
+    const localVideo = document.getElementById('local-stream');
+    const joinTrigger = document.getElementById('join-trigger');
+    const leaveTrigger = document.getElementById('leave-trigger');
+    const remoteVideos = document.getElementById('remote-streams');
+    const roomId = 'roomId';
+    const messages = document.getElementById('messages');
 
     //ビデオの設定を許可
     const localStream = await navigator.mediaDevices
         .getUserMedia({
             audio: true,
-            video: true,
+            video: { width: 320, height: 180 }
         })
         .catch(console.error);
 
@@ -28,18 +26,19 @@ const Peer = window.Peer;
 
     // 接続に必要なPeerインスタンスを作成
     const peer = (window.peer = new Peer({
-        key: SKYWAY_KEY, //APIキー
+        key: SKYWAY_KEY, //APIキーを設定
         debug: 3,
     }));
 
-    // Joinボタンを押すとイベント発火
+
+    // // Joinボタンを押すとイベント発火
     joinTrigger.addEventListener('click', () => {
         //サーバーへの接続ができない場合
         if (!peer.open) {
             return;
         }
         //サーバーへの接続ができる場合
-        const room = peer.joinRoom(roomId.value, {
+        const room = peer.joinRoom(roomId, {
             mode: "mesh",
             stream: localStream,
         });
@@ -82,7 +81,6 @@ const Peer = window.Peer;
 
         //自分の退室処理
         room.once('close', () => {
-            sendTrigger.removeEventListener('click', onClickSend);
             messages.textContent += '== You left ===\n';
             Array.from(remoteVideos.children).forEach(remoteVideo => {
                 remoteVideo.srcObject.getTracks().forEach(track => track.stop());
@@ -91,16 +89,8 @@ const Peer = window.Peer;
             });
         });
 
-        sendTrigger.addEventListener('click', onClickSend);
         leaveTrigger.addEventListener('click', () => room.close(), { once: true });
 
-        function onClickSend() {
-            // メッセージを送る
-            room.send(localText.value);
-
-            messages.textContent += `${peer.id}: ${localText.value}\n`;
-            localText.value = '';
-        }
     });
 
     peer.on('error', console.error);
