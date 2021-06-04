@@ -1,0 +1,29 @@
+@charset "UTF-8";
+body {
+    color: #fff;
+    background-color: #000;
+    font-family: "メイリオ";
+    font-size: 24px;
+    margin: auto;
+    font-family: 'DotGothic16', sans-serif;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+}
+
+input {
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 24px;
+    text-align: center;
+}
+
+
+/* ボタン装飾 */
+
+button {
+    font-size: 24px;
+    font-family: 'DotGothic16', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    color: #000;
+    background-color: #fff;
+}

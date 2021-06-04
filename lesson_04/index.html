@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.webrtc.ecl.ntt.com/skyway-4.4.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="heading">Simple Video Call</h1>
+        <div class="room">
+            <div>
+                <video id="local-stream"></video>
+                <button id="join-trigger">Join</button>
+                <button id="leave-trigger">Leave</button>
+            </div>
+            <div class="remote-streams" id="remote-streams"></div>
+            <div>
+                <pre class="messages" id="messages"></pre>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="env/key.js"></script>
+<script src="js/multi.js"></script>
+
+</html>
