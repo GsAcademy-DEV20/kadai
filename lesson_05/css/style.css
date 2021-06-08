@@ -1,0 +1,34 @@
+body {
+    background-color: #faf3f3;
+    min-width: 500px;
+    font-family: 'Hachi Maru Pop', cursive;
+    color: rgb(75, 75, 75);
+}
+
+h1 {
+    text-align: center;
+    background: #da7f8f;
+    width: 100%;
+    font-size: 28px;
+    color: #FFF;
+    font-weight: bold;
+    margin: 0 0 30px;
+    padding: 10px;
+}
+
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.judge {
+    color: red;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+}
