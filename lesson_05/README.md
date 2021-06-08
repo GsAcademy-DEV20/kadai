@@ -9,7 +9,7 @@
 
 ## ②工夫した点・こだわった点
 - PHPで画像表示、CSSをあててみた
-- <form method="post">を使って値渡し
+- ```<form method="post">```を使って値渡し
 - 関数をまとめたfuncs.phpをincludeしてみた
 
 ## ③質問・疑問（あれば）
