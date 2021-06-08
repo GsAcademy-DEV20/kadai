@@ -1,11 +1,12 @@
 # 05PHP
 ## ①課題内容（どんな作品か）
+ ![2021-06-08_17h38_53](https://user-images.githubusercontent.com/69302785/121154303-d54f1c00-c881-11eb-94e4-8884c497294f.png)
 - PHPでじゃんけん
 - 使い方
 1. C:\xampp\htdocs\GsAcademy-DEV20 以下にlesson_05フォルダをコピー
 2. XAMPPでApache、MySqlをStart
 3. http://localhost/GsAcademy-DEV20/lesson_05/ にアクセス
- ![2021-06-08_17h38_53](https://user-images.githubusercontent.com/69302785/121154303-d54f1c00-c881-11eb-94e4-8884c497294f.png)
+4. 下部にあるボタンから手を選ぶ。
 
 
 ## ②工夫した点・こだわった点
