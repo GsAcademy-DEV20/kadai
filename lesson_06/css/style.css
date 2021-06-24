@@ -1,0 +1,91 @@
+/* ----------------------------------------
+    汎用
+ ----------------------------------------*/
+
+@charset "UTF-8";
+body {
+    color: #222222;
+    font-family: "メイリオ";
+    font-size: 24px;
+    margin: auto;
+    font-family: 'DotGothic16', sans-serif;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+}
+
+ul {
+    list-style: none;
+}
+
+input {
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 24px;
+    text-align: center;
+}
+
+
+/* ----------------------------------------
+    トップページ
+  ----------------------------------------*/
+
+.index-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    background-color: #78bbe6;
+    border-radius: 5px;
+    padding: 40px;
+    text-align: center;
+    color: #fff;
+}
+
+.name-container,
+.avatar-container,
+.enter-container {
+    align-items: center;
+    justify-content: space-between;
+    width: 200px;
+    margin: 0 auto 30px;
+}
+
+.name-container div,
+.avatar-container div {
+    margin: 10px 0;
+}
+
+.select-avatar-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.select-avatar-list img {
+    width: 30px;
+    margin: 0 15px 10px;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.enter-btn {
+    background-color: #F99F48;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #fff;
+    width: 200px;
+    margin: 10px 0;
+}
+
+.name-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* ラジオボタンの○を消す */
+
+input[type="radio"] {
+    display: none;
+}
