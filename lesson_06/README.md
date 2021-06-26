@@ -10,7 +10,8 @@
 - C:\xampp\htdocs 以下にフォルダごとコピー
 - xamppを起動
 - PHPMyAdminから、DB：gs_kadai_06／table：user_tableを作成
-- テーブル内に枠を用意（id, name, birthday, avatar, thanks, indate）
+- テーブル内に枠を用意（id, name, birthday, avatar, thanks, indate）  
+ SQLフォルダ内参照
 - index.phpを開く
 
 ## ②工夫した点・こだわった点
