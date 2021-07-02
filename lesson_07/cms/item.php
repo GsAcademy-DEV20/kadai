@@ -16,6 +16,7 @@
         <nav class="navigation" id="navigation">
             <ul class="nav-list">
                 <li class="nav-item site-title"><a href="../top.php">waninaro</a></li>
+                <li class="nav-item"><a href="./item_list.php">管理</a></li>
             </ul>
         </nav>
     </header>

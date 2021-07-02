@@ -30,7 +30,7 @@ if ($status == false) {
         $view .= '<p class="cart-thumb"><img src="../img/' . $res["fname"] . '" width="200px"></p>';
         $view .= '<h2 class="cart-title">' . $res["item"] . '</h2>';
         $view .= '<p class="cart-price">' . $res["value"] . '</p>';
-        $view .= '<a href="#" class="btn-update">編集</a>';
+        $view .= '<a href="detail.php?id='.$res["id"].'" class="btn-update">編集</a>';
         $view .= ' <a href="delete.php?id='.$res["id"].'" class="btn-delete">削除</a>';
         $view .= '</li>';
     }
@@ -54,6 +54,7 @@ if ($status == false) {
         <nav class="navigation" id="navigation">
             <ul class="nav-list">
                 <li class="nav-item site-title"><a href="../top.php">waninaro</a></li>
+                <li class="nav-item"><a href="./item.php">新規追加</a></li>
             </ul>
         </nav>
     </header>

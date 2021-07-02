@@ -55,9 +55,8 @@ if ($status == false) {
     <header class="header">
         <nav class="navigation" id="navigation">
             <ul class="nav-list">
-                <li class="nav-item"><a href="./top.php">waninaro</a></li>
-                <li class="nav-item"><a href="./cms/item.php">追加（店舗）</a></li>
-                <li class="nav-item"><a href="./cms/item_list.php">一覧（店舗）</a></li>
+                <li class="nav-item"><a href="./index.php">waninaro</a></li>
+                <li class="nav-item"><a href="./cms/item_list.php">管理</a></li>
             </ul>
         </nav>
     </header>
