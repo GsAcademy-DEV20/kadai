@@ -9,7 +9,7 @@ $id = $_GET['id'];
 // $pdo = new PDO('mysql:dbname=xxx;charset=utf8;host=localhost', 'root', 'root');
 
 try {
-    $pdo = new PDO('mysql:dbname=a_db;charset=utf8;host=localhost', 'root', '');
+    $pdo = new PDO('mysql:dbname=gs_kadai_07;charset=utf8;host=localhost', 'root', '');
 } catch (PDOException $e) {
     exit('DbConnectError:'.$e->getMessage());
 }
@@ -17,7 +17,7 @@ try {
 
 //３．データ登録SQL作成 //ここにカラム名を入力する
 //xxx_table(テーブル名)はテーブル名を入力します
-$stmt = $pdo->prepare("DELETE FROM a_table WHERE id=:id");
+$stmt = $pdo->prepare("DELETE FROM room_table WHERE id=:id");
 //bindValueで値をくっつける
 $stmt->bindValue(':id', $id, PDO::PARAM_INT);  //Integer（数値の場合 PDO::PARAM_INT)
 $status = $stmt->execute();
@@ -29,6 +29,6 @@ if ($status==false) {
     exit("QueryError:".$error[2]);
 } else {
     //５．index.phpへリダイレクト 書くときにLocation: in この:　のあとは半角スペースがいるので注意！！
-    header("Location: select.php");
+    header("Location: item_list.php");
     exit;
 }
