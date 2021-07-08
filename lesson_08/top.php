@@ -29,7 +29,7 @@ if ($status == false) {
 } else {
     while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $view .= '<li class="products-item">';
-        $view .= '<a href="peparation_room.php?id=' . $result["id"] . '">';
+        $view .= '<a href="prepare.php?id=' . $result["id"] . '">';
         $view .= '<p class="room-type">' . $result["type"] . '</p>';
         $view .= '<h3 class="room-name">' . $result["name"] . '</h3>';
         $view .= '</a>';
@@ -90,7 +90,7 @@ if ($status == false) {
                 <nav>
                     <ul>
                         <li><a href="#">おすすめ</a></li>
-                        <li><a href="./cms/myroom.php">まいるーむ</a></li>
+                        <li><a href="./myroom.php">まいるーむ</a></li>
                         <li><a href="#">りれき</a></li>
                     </ul>
                 </nav>
@@ -109,8 +109,8 @@ if ($status == false) {
     <footer class="menu">
         <ul class="menu-list">
             <li class="menu-item"><a href="#">ほーむ</a></li>
-            <li class="menu-item"><a href="./cms/make_room.php">つくる</a></li>
-            <li class="menu-item"><a href="#">あかうんと</a></li>
+            <li class="menu-item"><a href="./create.php">つくる</a></li>
+            <li class="menu-item"><a href="./account.php">あかうんと</a></li>
         </ul>
     </footer>
 

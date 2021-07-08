@@ -37,6 +37,13 @@ a {
 }
 
 
+/* ラジオボタンの○を消す */
+
+input[type="radio"] {
+    display: none;
+}
+
+
 /* ----------------------------------------
 ヘッダー
  ----------------------------------------*/
@@ -182,6 +189,33 @@ header {
     padding: 10px 0;
     border-radius: 10px;
     color: #fff;
+}
+
+.name-container,
+.avatar-container,
+.enter-container {
+    align-items: center;
+    justify-content: space-between;
+    width: 200px;
+    margin: 0 auto 30px;
+}
+
+.name-container div,
+.avatar-container div {
+    margin: 10px 0;
+}
+
+.select-avatar-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.select-avatar-list img {
+    width: 30px;
+    margin: 0 15px 10px;
+    opacity: 0.5;
+    cursor: pointer;
 }
 
 

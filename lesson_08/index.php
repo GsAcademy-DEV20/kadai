@@ -28,7 +28,7 @@
             <ul class="nav-list">
                 <li class="nav-item"><a href="#">機能</a></li>
                 <li class="nav-item"><a href="#">プラン</a></li>
-                <li class="nav-item"><a href="#">ログイン</a></li>
+                <li class="nav-item"><a href="login.php">ログイン</a></li>
             </ul>
         </nav>
     </header>

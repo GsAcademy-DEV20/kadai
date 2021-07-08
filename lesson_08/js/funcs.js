@@ -1,4 +1,6 @@
+// ----------------------------------------------------------------
 // headerのmenuの開閉（ハンバーガーメニュー）
+// ----------------------------------------------------------------
 let menuClose = true;
 $("#btn-trigger").on("click", function() {
 
@@ -35,4 +37,16 @@ $('input[type=file]').change(function() {
         $('.cms-thumb>img').attr('src', render.result);
     }
     render.readAsDataURL(file);
+});
+
+// ----------------------------------------------------------------
+//  アバター選択
+// ----------------------------------------------------------------
+let myChara = 0;
+const charaImage = ["chara0.png", "chara1.png", "chara2.png", "chara3.png"];
+$(".chara").on("click", function() {
+    myChara = $(this).attr("data-image");
+    console.log("myChara:" + myChara);
+
+    document.getElementById("selected-avatar").src = "img/" + charaImage[myChara];
 });
