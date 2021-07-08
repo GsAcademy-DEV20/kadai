@@ -1,24 +1,26 @@
 <?PHP
-// ----------------------------------------------------------------
-// 1. DB接続
-// ----------------------------------------------------------------
 
-try {
-    //サーバーの情報
-    $pdo = new PDO('mysql:dbname=gs_kadai_07;charset=utf8;host=localhost', 'root', '');
-} catch (PDOException $e) {
-    exit('DbConnectError:' . $e->getMessage());
-}
+session_start();
+
+include("../funcs.php");
+loginCheck();
 
 // ----------------------------------------------------------------
-// 2. データ抽出SQL作成
+// DB接続
 // ----------------------------------------------------------------
+$pdo = dbConnect();
+
+// ----------------------------------------------------------------
+// データ抽出SQL作成
+// ----------------------------------------------------------------
+
 $stmt = $pdo->prepare("SELECT * FROM room_table");
 $status = $stmt->execute();
 
 // ----------------------------------------------------------------
-// 3. データ表示
+// データ表示
 // ----------------------------------------------------------------
+
 $view = "";
 if ($status == false) {
     //SQL実行時にエラーがある場合（エラーオブジェクト取得して表示）
@@ -27,11 +29,10 @@ if ($status == false) {
 } else {
     while ($res = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $view .= '<li class="cart-list">';
-        $view .= '<p class="cart-thumb"><img src="../img/' . $res["fname"] . '" width="200px"></p>';
-        $view .= '<h2 class="cart-title">' . $res["item"] . '</h2>';
-        $view .= '<p class="cart-price">' . $res["value"] . '</p>';
-        $view .= '<a href="detail.php?id='.$res["id"].'" class="btn-update">編集</a>';
-        $view .= ' <a href="delete.php?id='.$res["id"].'" class="btn-delete">削除</a>';
+        $view .= '<h2 class="cart-title">' . $res["name"] . '</h2>';
+        $view .= '<p class="cart-price">' . $res["type"] . '</p>';
+        $view .= '<a href="../peparation_room.php?id=' . $res["id"] . '" class="btn-update">入室</a>';
+        $view .= ' <a href="delete.php?id=' . $res["id"] . '" class="btn-delete">削除</a>';
         $view .= '</li>';
     }
 }
@@ -54,13 +55,15 @@ if ($status == false) {
         <nav class="navigation" id="navigation">
             <ul class="nav-list">
                 <li class="nav-item site-title"><a href="../top.php">waninaro</a></li>
-                <li class="nav-item"><a href="./make_room.php">新規追加</a></li>
+                <li class="nav-item"><a href="#">検索</a></li>
             </ul>
         </nav>
     </header>
 
     <div class="main-container">
-        <h1 class="page-title page-title__cms">管理画面</h1>
+        <h1 class="page-title page-title__cms">非公開</h1>
+        <div><a href="./make_room.php">新規追加</a></div>
+        <div><a href="../logout.php">ログアウト</a></div>
         <div class="wrapper wrapper-main flex-parent">
             <main class="wrapper-main">
                 <ul class="cart-products">

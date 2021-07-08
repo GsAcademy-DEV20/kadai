@@ -9,7 +9,7 @@ $id = $_GET['id'];
 // $pdo = new PDO('mysql:dbname=xxx;charset=utf8;host=localhost', 'root', 'root');
 
 try {
-    $pdo = new PDO('mysql:dbname=gs_kadai_07;charset=utf8;host=localhost', 'root', '');
+    $pdo = new PDO('mysql:dbname=gs_kadai_08;charset=utf8;host=localhost', 'root', '');
 } catch (PDOException $e) {
     exit('DbConnectError:'.$e->getMessage());
 }

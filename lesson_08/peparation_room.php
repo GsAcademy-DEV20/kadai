@@ -3,7 +3,7 @@ session_start();
 
 //値を取得
 if (!isset($_GET["id"]) || $_GET["id"] == "") {
-    exit("ParamError!item!");
+    exit("ParamError!id!");
 } else {
     $id = intval($_GET["id"]); //intvalは全部数値に変換する関数
 }
@@ -14,7 +14,7 @@ if (!isset($_GET["id"]) || $_GET["id"] == "") {
 
 try {
     //サーバーの情報
-    $pdo = new PDO('mysql:dbname=gs_kadai_07;charset=utf8;host=localhost', 'root', '');
+    $pdo = new PDO('mysql:dbname=gs_kadai_08;charset=utf8;host=localhost', 'root', '');
 } catch (PDOException $e) {
     exit('DbConnectError:' . $e->getMessage());
 }
@@ -57,35 +57,33 @@ if ($status == false) {
         <nav class="navigation" id="navigation">
             <ul class="nav-list">
                 <li class="nav-item site-title"><a href="./top.php">waninaro</a></li>
+                <li class="nav-item site-title"> <a href="./cms/edit_room.php?id=<?= $row["id"] ?>" class="btn-update">編集</a></li>
             </ul>
         </nav>
     </header>
 
     <form action="cartadd.php" method="POST">
         <div class="main-container">
-            <h1 class="page-title">商品</h1>
             <div class="wrapper wrapper-main flex-parent">
 
                 <main class="wrapper-main">
-                    <!-- 商品情報 -->
-                    <p class="item-thumb"><img src="./img/<?= $row["fname"] ?>" width="200"></p>
                     <div class="flex-parent item-label">
-                        <h1 class="item-name"><?= $row["item"] ?></h1>
-                        <p class="item-price"><?= $row["value"] ?></p>
-                        <p><input type="number" value="1" name="num" class="cartin-number"> </p>
+                        <h1 class="item-name"><?= $row["name"] ?></h1>
+                        <div>ユーザーのIDとアバター</div>
+                        <div>マイク</div>
+                        <div>スピーカー</div>
                     </div>
-                    <!-- カートボタン -->
                     <div class="flex-parent item-label">
-                        <input type="submit" class="btn-cartin" value="カートに入れる">
+                        <input type="submit" class="btn-cartin" value="入る">
                     </div>
-                    <!-- 商品詳細 -->
-                    <div class="flex-parent item-label">
-                        <p class="item-text"><?= $row["description"] ?></p>
-                    </div>
-                    <input type="hidden" name="item" value="<?= $row["item"] ?>">
-                    <input type="hidden" name="value" value="<?= $row["value"] ?>">
+                    <a href="#">リンクをシェア</a>
+
+                    <!-- 部屋情報値を送る -->
                     <input type="hidden" name="id" value="<?= $row["id"] ?>">
-                    <input type="hidden" name="fname" value="<?= $row["fname"] ?>">
+                    <input type="hidden" name="type" value="<?= $row["type"] ?>">
+                    <input type="hidden" name="name" value="<?= $row["name"] ?>">
+                    <input type="hidden" name="key_flg" value="<?= $row["key_flg"] ?>">
+                    <input type="hidden" name="key_flg" value="<?= $row["psw"] ?>">
                 </main>
             </div>
         </div>

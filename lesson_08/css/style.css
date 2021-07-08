@@ -78,10 +78,15 @@ header {
     padding: 64px 0 0;
 }
 
-nav li a {
+.nav-item a {
     color: #fff;
     margin: 0 10px;
     display: block;
+}
+
+.header-menu {
+    color: #222222;
+    background-color: #F99F48;
 }
 
 .btn-trigger {

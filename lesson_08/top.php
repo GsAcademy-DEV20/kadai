@@ -7,7 +7,7 @@ session_start();
 
 try {
     //サーバーの情報
-    $pdo = new PDO('mysql:dbname=gs_kadai_07;charset=utf8;host=localhost', 'root', '');
+    $pdo = new PDO('mysql:dbname=gs_kadai_08;charset=utf8;host=localhost', 'root', '');
 } catch (PDOException $e) {
     exit('DbConnectError:' . $e->getMessage());
 }
@@ -29,10 +29,9 @@ if ($status == false) {
 } else {
     while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $view .= '<li class="products-item">';
-        $view .= '<a href="room.php?id=' . $result["id"] . '">';
-        $view .= '<p class="products-thumb"><img src="./img/' . $result["fname"] . '" width="200"></p>';
-        $view .= '<h3 class="products-title">' . $result["item"] . '</h3>';
-        $view .= '<p class="products-price">' . $result["value"] . '</p>';
+        $view .= '<a href="peparation_room.php?id=' . $result["id"] . '">';
+        $view .= '<p class="room-type">' . $result["type"] . '</p>';
+        $view .= '<h3 class="room-name">' . $result["name"] . '</h3>';
         $view .= '</a>';
         $view .= '</li>';
     }
@@ -67,55 +66,54 @@ if ($status == false) {
         </button>
         <nav class="navigation-index" id="navigation-index">
             <ul class="nav-list">
-                <li class="nav-item"><a href="./index.php">waninaro</a></li>
-                <li class="nav-item"><a href="./cms/myroom.php">管理</a></li>
+                <li class="nav-item"><a href="./index.php">←おすすめ</a></li>
+                <li class="nav-item"><a href="#">検索</a></li>
             </ul>
         </nav>
     </header>
+
+    <div class="widget">
+                <form action="" method="get" class="search-form">
+                    <div>
+                    <input type="text" placeholder="部屋を探す" class="search-box">
+                        <input type="submit" value="送信" class="search-submit">
+                    </div>
+                </form>
+            </div>
 
 
     <div class="main-container">
         <!-- メインカテゴリ -->
         <div class="wrapper wrapper-main flex-parent">
 
-            <div class="widget">
-                <form action="" method="get" class="search-form">
-                    <div>
-                        <input type="text" placeholder="アイテムを探す" class="search-box">
-                        <input type="submit" value="送信" class="search-submit">
-                    </div>
-                </form>
+            <div class="header-menu">
+                <nav>
+                    <ul>
+                        <li><a href="#">おすすめ</a></li>
+                        <li><a href="./cms/myroom.php">まいるーむ</a></li>
+                        <li><a href="#">りれき</a></li>
+                    </ul>
+                </nav>
             </div>
 
-            <div class="widget">
-                <h3 class="widget-title">All products</h3>
-                <ul class="category-list">
-                    <li class="category-item"><a href="#">Category1</a></li>
-                    <li class="category-item"><a href="#">Category2</a></li>
-                    <li class="category-item"><a href="#">Category3</a></li>
-                    <li class="category-item"><a href="#">Category4</a></li>
-                </ul>
-            </div>
+
+
             <main class="wrapper-main">
-                <div class="sort-area">
-                    <a href="#" class="sort-all">全て見る</a>
-
-                    <div class="sort-detail">
-                        <p class="sort-text">並びかえ</p>
-                        <ul class="sort-list flex-parent">
-                            <li class="sort-item"><a href="#">名前順</a></li>
-                            <li class="sort-item"><a href="#">価格の安い順</a></li>
-                        </ul>
-                    </div>
-                </div>
-
                 <ul class="product-list">
                     <?= $view ?>
                 </ul>
             </main>
-
         </div>
     </div>
+
+    <footer class="menu">
+        <ul class="menu-list">
+            <li class="menu-item"><a href="#">ほーむ</a></li>
+            <li class="menu-item"><a href="./cms/make_room.php">つくる</a></li>
+            <li class="menu-item"><a href="#">あかうんと</a></li>
+        </ul>
+    </footer>
+
 </body>
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
