@@ -24,14 +24,40 @@
 
         <div class="wrapper wrapper-cms">
             <form action="./act/insert_act.php" method="post" class="flex-parent cartin-area cms-area" enctype="multipart/form-data">
-                <p class="cms-thumb"><img src="./img/about.png" width="200"></p>
+
+                <!--ルームタイプ-->
+                <div class="room-container">
+                    <div>部屋タイプ</div>
+                    <div>
+                        <ul class="select-room-list">
+                            <li>
+                                <input id="room0" type="radio" value="0" name="type">
+                                <label for="room0">
+                                    <img class="room" data-image="0" src="img/room/room0.png" alt="">
+                                </label>
+                            </li>
+                            <li>
+                                <input id="room1" type="radio" value="1" name="type">
+                                <label for="room1">
+                                    <img class="room" data-image="1" src="img/room/room1.png" alt="">
+                                </label>
+                            </li>
+                            <li>
+                                <input id="room2" type="radio" value="2" name="type">
+                                <label for="room2">
+                                    <img class="room" data-image="2" src="img/room/room2.png" alt="">
+                                </label>
+                            </li>
+                            <li>
+                                <input id="room3" type="radio" value="3" name="type">
+                                <label for="room3">
+                                    <img class="room" data-image="3" src="img/room/room3.png" alt="">
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                 <dl class="cms-list">
-                    <dt>部屋タイプ</dt>
-                    <dd>
-                        <input type="radio" name="type" value="1" checked="checked">タイプ１
-                        <input type="radio" name="type" value="2">タイプ２
-                        <input type="radio" name="type" value="3">タイプ３
-                    </dd>
                     <dt>ルーム名</dt>
                     <dd><input type="text" name="name" placeholder="ルーム名を入力" class="cms-item"></dd>
                     <dt>鍵</dt>

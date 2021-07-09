@@ -1,16 +1,17 @@
 <?php
 function loginCheck()
 {
-
+    //ログインしてなかったらログインページに案内
     if (!isset($_SESSION["chk_ssid"]) || $_SESSION["chk_ssid"] != session_id()) {
         echo "Login Error!";
         header("Location:./login.php");
         exit();
-    } else {
+    } else {//ログインしてたらそのまま表示
         session_regenerate_id(true);
         $_SESSION["chk_ssid"] = session_id();
     }
 }
+
 
 
 function dbConnect()

@@ -22,6 +22,7 @@
 
 
   <div class="main-container">
+    <h1>ログイン</h1>
     <!-- login_act.phpにデータを送ります -->
     <form action="./act/login_act.php" method="post">
       <div>

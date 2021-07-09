@@ -12,7 +12,7 @@
 
 
 <body>
-    <header class="header">
+    <header class="header-burger">
         <button class="btn-trigger" id="btn-trigger">
             <svg viewBox="0 0 44 44" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" aria-labelledby="menuButtonTitle">
                 <title id="menuButtonTitle">Menu</title>
@@ -24,11 +24,11 @@
                 <use xlink:href="#bar" x="8" y="34"></use>
             </svg>
         </button>
-        <nav class="navigation" id="navigation-index">
-            <ul class="nav-list">
-                <li class="nav-item"><a href="#">機能</a></li>
-                <li class="nav-item"><a href="#">プラン</a></li>
-                <li class="nav-item"><a href="login.php">ログイン</a></li>
+        <nav class="navigation-burger" id="navigation-burger">
+            <ul class="nav-list-burger">
+                <li class="nav-item-burger"><a href="#">機能</a></li>
+                <li class="nav-item-burger"><a href="#">プラン</a></li>
+                <li class="nav-item-burger"><a href="login.php">ログイン</a></li>
             </ul>
         </nav>
     </header>
@@ -40,16 +40,16 @@
             <div class="description-container">
                 <ul class="avatar-list">
                     <li>
-                        <img class="chara" src="img/chara0.png" alt="">
+                        <img class="chara" src="img/chara/chara0.png" alt="">
                     </li>
                     <li>
-                        <img class="chara" src="img/chara1.png" alt="">
+                        <img class="chara" src="img/chara/chara1.png" alt="">
                     </li>
                     <li>
-                        <img class="chara" src="img/chara2.png" alt="">
+                        <img class="chara" src="img/chara/chara2.png" alt="">
                     </li>
                     <li>
-                        <img class="chara" src="img/chara3.png" alt="">
+                        <img class="chara" src="img/chara/chara3.png" alt="">
                     </li>
                 </ul>
             </div>
@@ -59,8 +59,8 @@
                 <div id="enter" class="enter-btn">ENTER</div>
             </a>
         </div>
-        <p>利用規約</p>
-        <p>プライバシーポリシー</p>
+        <p><a href="#">利用規約</a></p>
+        <p><a href="#">プライバシーポリシー</a></p>
     </div>
 
 

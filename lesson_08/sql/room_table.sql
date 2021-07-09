@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: 127.0.0.1
--- 生成日時: 2021-07-02 06:52:53
+-- 生成日時: 2021-07-09 17:30:10
 -- サーバのバージョン： 10.4.19-MariaDB
 -- PHP のバージョン: 8.0.6
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- データベース: `gs_kadai_07`
+-- データベース: `gs_kadai_08`
 --
 
 -- --------------------------------------------------------
@@ -29,21 +29,20 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `room_table` (
   `id` int(12) NOT NULL,
-  `item` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-  `value` int(6) NOT NULL,
-  `description` text COLLATE utf8_unicode_ci NOT NULL,
-  `fname` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
+  `type` int(6) NOT NULL,
+  `name` varchar(64) NOT NULL,
+  `key_flg` int(1) NOT NULL,
+  `psw` varchar(64) DEFAULT NULL,
   `indate` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- テーブルのデータのダンプ `room_table`
 --
 
-INSERT INTO `room_table` (`id`, `item`, `value`, `description`, `fname`, `indate`) VALUES
-(2, '独習PHP', 3750, '   PHPの本だよ', 'book1.jpg', '2021-07-01 22:49:55'),
-(3, 'javascript「超」入門', 2450, ' javascriptの本だよ', 'book2.jpg', '2021-07-01 22:54:18'),
-(4, '1冊ですべて身につくHTML ＆ CSSとWebデザイン入門講座', 2237, 'HTMLとCSSの本だよ', 'book3.jpg', '2021-07-01 22:55:31');
+INSERT INTO `room_table` (`id`, `type`, `name`, `key_flg`, `psw`, `indate`) VALUES
+(7, 1, 'プログラミング勉強会1', 2, 'hogehoge', '2021-07-09 12:39:42'),
+(8, 2, 'プログラミング勉強会2', 1, 'hoge', '2021-07-09 12:40:09');
 
 --
 -- ダンプしたテーブルのインデックス
@@ -63,7 +62,7 @@ ALTER TABLE `room_table`
 -- テーブルの AUTO_INCREMENT `room_table`
 --
 ALTER TABLE `room_table`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

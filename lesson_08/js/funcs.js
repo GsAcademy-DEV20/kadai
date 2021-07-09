@@ -6,11 +6,11 @@ $("#btn-trigger").on("click", function() {
 
     if (menuClose) {
         document.querySelector('.btn-trigger').classList.add("active");
-        $("#navigation-index").css({ 'display': 'block' });
+        $("#navigation-burger").css({ 'display': 'block' });
         menuClose = false;
     } else {
         document.querySelector('.btn-trigger').classList.remove("active");
-        $("#navigation-index").css({ 'display': 'none' });
+        $("#navigation-burger").css({ 'display': 'none' });
         menuClose = true;
 
     }
