@@ -1,0 +1,395 @@
+/* ----------------------------------------
+    汎用
+ ----------------------------------------*/
+
+@charset "UTF-8";
+html {
+    height: auto;
+    font-size: 62.5%;
+    /* 0.1rem=1px */
+}
+
+body {
+    color: #222222;
+    font-size: 1.6rem;
+    margin: auto;
+    font-family: 'DotGothic16', sans-serif;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+}
+
+ul {
+    list-style: none;
+}
+
+p {
+    margin: 10px 0;
+}
+
+dt {
+    margin: 10px 0;
+}
+
+a {
+    text-decoration: none;
+    color: #222222;
+}
+
+a:hover {
+    color: #D3D3D3;
+}
+
+
+/* ラジオボタンの○を消す */
+
+input[type="radio"] {
+    display: none;
+}
+
+
+/* ----------------------------------------
+    ヘッダー
+ ----------------------------------------*/
+
+
+/* バーガーメニューあり===============*/
+
+.header-burger {
+    /* 並列にする */
+    display: flex;
+    /* アイテムを中央付近にまとめる */
+    align-items: center;
+    justify-content: flex-end;
+    background-color: #222222;
+    position: fixed;
+    width: 100%;
+    height: 40px;
+    z-index: 10;
+}
+
+.btn-trigger,
+.btn-trigger span {
+    appearance: none;
+    -webkit-appearance: none;
+    display: block;
+    position: fixed;
+    right: 10px;
+    width: 40px;
+    z-index: 100;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+    outline: none;
+    -webkit-tap-highlight-color: #222222;
+}
+
+
+/* ハンバーガーメニューをバツ印にする */
+
+.btn-trigger.active use:nth-of-type(1) {
+    transform: translateY(30px) rotate(-45deg);
+}
+
+.btn-trigger.active use:nth-of-type(2) {
+    opacity: 0;
+}
+
+.btn-trigger.active use:nth-of-type(3) {
+    transform: translateX(35px) translateY(-15px) rotate(45deg);
+}
+
+
+/* バーガーありのナビゲーションメニュー */
+
+.navigation-burger {
+    /* 表示非表示はdisplay: none;とdisplay: block;を切り替える */
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.nav-list-burger {
+    /* バーガーメニュー内のナビリスト */
+    margin: 0 0 60px;
+    text-align: center;
+}
+
+.nav-item-burger {
+    display: block;
+    padding: 84px 0 0;
+}
+
+.header-burger nav li a {
+    color: #fff;
+    margin: 0 10px;
+    display: block;
+}
+
+
+/* バーガーメニューなし===============*/
+
+.header {
+    /* 並列にする */
+    display: flex;
+    justify-content: space-between;
+    /* アイテムを中央付近にまとめる */
+    align-items: center;
+    background-color: #222222;
+    position: fixed;
+    width: 100%;
+    height: 40px;
+    z-index: 10;
+}
+
+.navigation {
+    font-size: 1.6rem;
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    padding: 15px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    top: 0;
+}
+
+.nav-list {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.nav-item {
+    padding: 0;
+}
+
+.header nav li a {
+    color: #fff;
+    margin: 0 10px;
+    display: block;
+}
+
+
+/* ----------------------------------------
+    メインコンテナ
+  ----------------------------------------*/
+
+
+/* index ===============*/
+
+.main-container {
+    box-sizing: border-box;
+    text-align: center;
+    margin: 40px 0 0;
+}
+
+.detail-container,
+.btn-container {
+    align-items: center;
+    margin: 0 auto 30px;
+}
+
+.btn-container {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 30px;
+}
+
+.detail-container div {
+    margin: 20px 0;
+}
+
+.title {
+    font-size: 4.8rem;
+    font-family: 'Sarpanch', sans-serif;
+}
+
+.description-container {
+    display: flex;
+    justify-content: center;
+}
+
+.avatar-list {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 80%;
+    height: 350px;
+    background-image: url(../img/about.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.avatar-list img {
+    width: 30px;
+    margin: 0 15px 10px;
+}
+
+.btn-enter {
+    background-color: #F99F48;
+    padding: 10px 0;
+    border-radius: 10px;
+    color: #fff;
+}
+
+
+/* top ===============*/
+
+.top-menu ul {
+    display: table;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    table-layout: fixed;
+}
+
+.top-menu li {
+    display: table-cell;
+    min-width: 50px;
+    border-bottom: 3px solid #fff;
+    /*ずれないように初期値で入れておく*/
+}
+
+.top-menu a {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    color: #222222;
+    padding-bottom: 1.0rem;
+}
+
+.top-menu li.current {
+    border-bottom: 3px solid #222222;
+}
+
+
+/* ----------------------------------------
+    フッター
+  ----------------------------------------*/
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background: yellow;
+    width: 100%;
+}
+
+.menu-list {
+    display: flex;
+}
+
+.menu-list li {
+    float: left;
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    padding: 5px;
+    list-style: none;
+    text-align: center;
+}
+
+.menu-list a span {
+    display: block;
+    font-size: 4px;
+}
+
+
+/* ----------------------------------------
+    流用（未整理）
+  ----------------------------------------*/
+
+.name-container,
+.avatar-container,
+.enter-container {
+    align-items: center;
+    justify-content: space-between;
+    width: 200px;
+    margin: 0 auto 30px;
+}
+
+.name-container div,
+.avatar-container div {
+    margin: 10px 0;
+}
+
+.select-avatar-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.select-avatar-list img {
+    width: 30px;
+    margin: 0 15px 10px;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+
+/* ----------------------------------------
+    PC対応
+  ----------------------------------------*/
+
+@media only screen and (min-width: 737px) {
+    /* Style adjustments for viewports 641px and over go here */
+    html {
+        height: auto;
+        background: #FFF;
+    }
+    body {
+        height: 100%;
+        background: transparent;
+        position: relative;
+        min-width: 920px;
+    }
+    /* ----------------------------------------
+    ヘッダー
+     ----------------------------------------*/
+    .btn-trigger {
+        display: none;
+    }
+    .navigation-burger {
+        font-size: 1.6rem;
+        box-sizing: border-box;
+        width: 100%;
+        height: auto;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        background-color: transparent;
+        top: 0;
+    }
+    .nav-list-burger {
+        display: flex;
+        margin: 0;
+    }
+    .nav-item-burger {
+        padding: 0;
+    }
+    /* ----------------------------------------
+    メインコンテナ
+     ----------------------------------------*/
+    /* index */
+    .btn-container {
+        width: 300px;
+    }
+    /* top */
+    .top-menu ul {
+        width: 70%;
+    }
+    .top-menu a:hover {
+        color: #D3D3D3;
+    }
+}
