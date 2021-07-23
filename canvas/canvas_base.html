@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>キャンバス</title>
+</head>
+
+<body>
+    <section>
+        <h1>Canvas</h1>
+        <nav>
+            <!-- 線の色 -->
+            <input type="color" id="color-selecter" value="#ffffff" list="color-list">
+            <datalist id="color-list">
+                <option value="#ff0000"></option>
+                <option value="#00ff00"></option>
+                <option value="#0000ff"></option>
+            </datalist>
+            <!-- 線の太さ -->
+            <input type="range" id="line-range" min="1" max="5" step="1" value="1">
+            <!-- クリア -->
+            <button id="clear_btn">クリア</button>
+        </nav>
+        <canvas id="drowarea" width="500" height="300" style="background-color:black"></canvas>
+    </section>
+
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script>
+        //初期化（変数letで宣言）
+        let canvas_mouse_event = false; //スイッチ【true=線を引く、false=線は引かない】
+        let oldX = 0; //１つ前の座標を代入するための変数
+        let oldY = 0; //１つ前の座標を代入するための変数
+        let bold_line = $("#line-range").val(); //ラインの太さ
+        let color = $("#color-selecter").val(); //ライン色
+
+        //準備
+        const can = $("#drowarea")[0];
+        const ctx = can.getContext("2d");
+
+        // -------------------------
+        //ペン描画
+        // -------------------------
+        //mousedown:フラグをTrue
+        $(can).on("mousedown", function(e) {
+            oldX = e.offsetX;
+            oldY = e.offsetY;
+            canvas_mouse_event = true;
+        });
+
+        //mousemove:フラグがTrueだったら描く
+        $(can).on("mousemove", function(e) {
+            if (canvas_mouse_event == true) {
+                const px = e.offsetX;
+                const py = e.offsetY;
+                ctx.strokeStyle = color; //色
+                ctx.lineWidth = bold_line; //太さ
+                ctx.lineJoin = "round";
+                ctx.lineCap = "round";
+
+                ctx.beginPath();
+                ctx.moveTo(oldX, oldY);
+                ctx.lineTo(px, py);
+                ctx.stroke();
+                oldX = px;
+                oldY = py;
+            }
+        });
+
+        //mouseup:フラグをfalse
+        $(can).on("mouseup", function() {
+            canvas_mouse_event = false;
+        });
+
+        //mouseout:フラグをfalse
+        $(can).on("mouseout", function() {
+            canvas_mouse_event = false;
+        });
+        // -------------------------
+        //機能
+        // -------------------------
+        //color-selecter:色変更
+        $("#color-selecter").on("change", function() {
+            color = $("#color-selecter").val();
+        });
+
+        //line-range:太さ変更
+        $("#line-range").on("change", function() {
+            bold_line = $("#line-range").val();
+        });
+        //clear_btn:クリア
+        $("#clear_btn").on("click", function() {
+            ctx.beginPath();
+            ctx.clearRect(0, 0, can.width, can.height);
+        });
+    </script>
+</body>
+
+
+
+
+</html>

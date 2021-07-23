@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>しかく</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="500" height="300"></canvas>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        const canvas = $("#canvas")[0];
+        const ctx = canvas.getContext("2d");
+
+        //四角線を設定
+        ctx.strokeStyle = "#ff0000";
+        ctx.rect(0, 0, 200, 100);
+        //塗り色を設定
+        ctx.fillStyle = "#000000";
+
+        //線を書く
+        ctx.stroke();
+        //色を塗る
+        ctx.fill();
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文字</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="500" height="300"></canvas>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        const canvas = $("#canvas")[0];
+        const ctx = canvas.getContext("2d");
+        //カラー指定
+        ctx.fillStyle = "#000000";
+        //fontサイズ、書式
+        ctx.font = "20px _sans";
+        //文字の設置位置
+        ctx.textBaseLine = "top";
+        //表示位置と座標
+        ctx.fillText("Hello World!", 100, 80);
+    </script>
+
+
+
+</body>
+
+</html>
